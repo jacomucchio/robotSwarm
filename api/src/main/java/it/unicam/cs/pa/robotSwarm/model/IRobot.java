@@ -15,4 +15,5 @@ public interface IRobot {
     Point getTarget();
     void setSpeed(double s);
     double getSpeed();
+    boolean isShowingCondition();
 }

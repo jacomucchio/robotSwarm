@@ -7,16 +7,18 @@ public class Robot implements IRobot{
     private ILabel label;
     private Point target;
     private double speed;
-
+    private boolean isShowingCondition;
     public Robot() {
         this.position = new Point(0, 0);
         this.target= new Point(0,0);
         this.speed=0;
+        isShowingCondition=false;
     }
     public Robot(Point position) {
         this.position = position;
         this.target= new Point(0,0);
         this.speed=0;
+        isShowingCondition=false;
     }
 
     @Override
@@ -70,5 +72,10 @@ public class Robot implements IRobot{
     @Override
     public double getSpeed() {
         return this.speed;
+    }
+
+    @Override
+    public boolean isShowingCondition() {
+        return isShowingCondition;
     }
 }
