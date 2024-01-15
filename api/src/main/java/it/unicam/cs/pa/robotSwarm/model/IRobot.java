@@ -5,6 +5,8 @@ import java.util.Set;
 public interface IRobot {
     void move(double x, double y, double speed);
     void stop();
+    void signal();
+    void unsignal();
     ILabel getLabel();
 
     void addLabel(ILabel label);
@@ -17,4 +19,5 @@ public interface IRobot {
     double getSpeed();
     boolean isShowingCondition();
     void setShowingCondition(boolean condition);
+
 }

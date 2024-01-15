@@ -35,6 +35,15 @@ public class Robot implements IRobot{
     }
 
     @Override
+    public void signal() {
+        this.isShowingCondition=true;
+    }
+    @Override
+    public void unsignal() {
+        this.isShowingCondition=false;
+    }
+
+    @Override
     public ILabel getLabel() {
         return this.label;
     }

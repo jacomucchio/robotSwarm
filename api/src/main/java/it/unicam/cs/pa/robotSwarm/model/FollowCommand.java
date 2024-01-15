@@ -10,6 +10,7 @@ public class FollowCommand implements ICommand{
         this.environment=e;
         this.dist=dist;
         this.speed=speed;
+        //TODO il target cosi viene impostato solo quando viene creato il comando e no ad ogni esecuzione
         target=environment.getAveragePositionOfRobotsWithLabel(r.getPosition(),l,dist);
     }
 
