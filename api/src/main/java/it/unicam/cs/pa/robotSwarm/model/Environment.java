@@ -60,4 +60,34 @@ public class Environment implements IEnvironment{
                 .filter(area -> area.containsPoint(point))
                 .collect(Collectors.toList());
     }
+    public List<IRobot> getRobotsWithinDistanceWithLabel(Point referencePoint, double distance,ILabel label) {
+        return getRobotsDisplayingCondition(label).stream()
+                .filter(robot -> calculateDistance(robot.getPosition(), referencePoint) <= distance)
+                .collect(Collectors.toList());
+    }
+    public Point getAveragePositionOfRobotsWithLabel(Point startingPosition, ILabel label, double distance) {
+        List<IRobot> robotsWithLabel = getRobotsWithinDistanceWithLabel(startingPosition,distance,label);
+        if (robotsWithLabel.isEmpty()) {
+            return null;
+        }
+
+        double sumX = 0.0;
+        double sumY = 0.0;
+        for (IRobot robot : robotsWithLabel) {
+            Point position = robot.getPosition();
+            sumX += position.getX();
+            sumY += position.getY();
+        }
+
+        double averageX = sumX / robotsWithLabel.size();
+        double averageY = sumY / robotsWithLabel.size();
+
+        return new Point(averageX, averageY);
+    }
+
+    private double calculateDistance(Point p1, Point p2) {
+        double dx = p1.getX() - p2.getX();
+        double dy = p1.getY() - p2.getY();
+        return Math.sqrt(dx * dx + dy * dy);
+    }
 }

@@ -48,7 +48,6 @@ public class EnvironmentTest {
         assertNotEquals(expectedRobots, environment.getRobotsByLabel(new BasicLabel("_A")));
         robot2.addLabel(new BasicLabel("_A"));
         assertEquals(expectedRobots, environment.getRobotsByLabel(new BasicLabel("_A")));
-        System.out.println(environment.getRobotsByLabel(new BasicLabel("_A")));
     }
     @Test
     public void testGetRobotsDisplayingCondition(){
@@ -67,5 +66,47 @@ public class EnvironmentTest {
         expectedArea.add(area1);
         expectedArea.add(area3);
         assertEquals(expectedArea,environment.getAreasAtPoint(new Point(0,0)));
+    }
+
+    @Test
+    public void testGetRobotsWithinDistanceWithLabel(){
+        Robot robot3 =new Robot(new Point(5,0));
+        Robot robot4 =new Robot(new Point(0,5));
+        Robot robot5 =new Robot(new Point(0,-5));
+
+        robot1.setShowingCondition(true);
+        robot1.addLabel(new BasicLabel("_A"));
+        robot3.addLabel(new BasicLabel("_A"));
+        robot3.setShowingCondition(true);
+        robot4.setShowingCondition(true);
+        robot4.addLabel(new BasicLabel("_B"));
+        robot5.setShowingCondition(true);
+        robot5.addLabel(new BasicLabel("_A"));
+
+        environment.addRobot(robot3);
+        environment.addRobot(robot4);
+        environment.addRobot(robot5);
+        List<IRobot> expectedRobots = new ArrayList<>();
+        expectedRobots.add(robot1);
+        expectedRobots.add(robot3);
+        expectedRobots.add(robot5);
+        assertEquals(expectedRobots,
+                environment.getRobotsWithinDistanceWithLabel(robot1.getPosition(),5,new BasicLabel("_A")));
+
+    }
+    @Test
+    public void testGetAveragePositionOfRobotsWithLabel(){
+        Robot robot3 =new Robot(new Point(5,0));
+        Robot robot4 =new Robot(new Point(-5,0));
+        robot1.setShowingCondition(true);
+        robot1.addLabel(new BasicLabel("_A"));
+        robot3.addLabel(new BasicLabel("_A"));
+        robot3.setShowingCondition(true);
+        robot4.setShowingCondition(true);
+        robot4.addLabel(new BasicLabel("_A"));
+        environment.addRobot(robot3);
+        environment.addRobot(robot4);
+        assertEquals(new Point(0,0),
+                environment.getAveragePositionOfRobotsWithLabel(robot1.getPosition(),new BasicLabel("_A"),5));
     }
 }
