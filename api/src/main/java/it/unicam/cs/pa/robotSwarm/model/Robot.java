@@ -78,4 +78,17 @@ public class Robot implements IRobot{
     public boolean isShowingCondition() {
         return isShowingCondition;
     }
+
+    @Override
+    public void setShowingCondition(boolean condition) {
+        this.isShowingCondition=condition;
+    }
+
+    @Override
+    public String toString() {
+        return "Robot alla posizione: "+position+
+                "\n con target: "+target+
+                "\n con velocita: "+speed+
+                "\n con label: "+label+"\n";
+    }
 }

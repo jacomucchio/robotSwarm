@@ -36,7 +36,7 @@ public class Environment implements IEnvironment{
     @Override
     public List<IRobot> getRobotsByLabel(ILabel label) {
         return robots.stream()
-                .filter(robot -> robot.getLabel().equals(label))
+                .filter(robot -> robot.getLabel() != null && robot.getLabel().equals(label))
                 .collect(Collectors.toList());
     }
 

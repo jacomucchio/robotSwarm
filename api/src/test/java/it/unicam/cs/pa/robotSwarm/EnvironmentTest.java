@@ -1,0 +1,71 @@
+package it.unicam.cs.pa.robotSwarm;
+
+import it.unicam.cs.pa.robotSwarm.model.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+public class EnvironmentTest {
+    private Environment environment;
+    private IRobot robot1, robot2;
+    private IArea area1, area2;
+
+    @BeforeEach
+    public void setUp() {
+        environment = new Environment();
+        robot1 = new Robot(new Point(0,0));
+        robot2 = new Robot(new Point(0,100));
+        area1 = new Circle(new Point(0,0),10,new BasicLabel("_A"));
+        area2 = new Rectangle(new BasicLabel("_A"),new Point(0,100),10, 20);
+        environment.addArea(area1);
+        environment.addArea(area2);
+        environment.addRobot(robot1);
+        environment.addRobot(robot2);
+
+    }
+
+    @Test
+    public void testAddAndGetRobots() {
+        assertEquals(List.of(robot1, robot2), environment.getRobots());
+    }
+
+    @Test
+    public void testAddAndGetAreas() {
+        assertEquals(List.of(area1, area2), environment.getAreas());
+    }
+
+    @Test
+    public void testGetRobotsByLabel() {
+        robot1.addLabel(new BasicLabel("_A"));
+        List<IRobot> expectedRobots = new ArrayList<>();
+        expectedRobots.add(robot1);
+        assertEquals(expectedRobots, environment.getRobotsByLabel(new BasicLabel("_A")));
+        expectedRobots.add(robot2);
+        assertNotEquals(expectedRobots, environment.getRobotsByLabel(new BasicLabel("_A")));
+        robot2.addLabel(new BasicLabel("_A"));
+        assertEquals(expectedRobots, environment.getRobotsByLabel(new BasicLabel("_A")));
+        System.out.println(environment.getRobotsByLabel(new BasicLabel("_A")));
+    }
+    @Test
+    public void testGetRobotsDisplayingCondition(){
+        robot1.addLabel(new BasicLabel("_A"));
+        robot2.addLabel(new BasicLabel("_A"));
+        robot1.setShowingCondition(true);
+        List<IRobot> expectedRobots = new ArrayList<>();
+        expectedRobots.add(robot1);
+        assertEquals(expectedRobots,environment.getRobotsDisplayingCondition(new BasicLabel("_A")));
+    }
+    @Test
+    public void testGetAreasAtPoint(){
+        IArea area3 = new Circle(new Point(0,0),10,new BasicLabel("_I"));
+        environment.addArea(area3);
+        List<IArea> expectedArea = new ArrayList<>();
+        expectedArea.add(area1);
+        expectedArea.add(area3);
+        assertEquals(expectedArea,environment.getAreasAtPoint(new Point(0,0)));
+    }
+}

@@ -16,4 +16,5 @@ public interface IRobot {
     void setSpeed(double s);
     double getSpeed();
     boolean isShowingCondition();
+    void setShowingCondition(boolean condition);
 }
