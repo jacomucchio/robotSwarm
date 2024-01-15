@@ -52,4 +52,6 @@ public interface IEnvironment {
      * @return a list containing the states of the cells at the given locations.
      */
     List<IArea> getAreasAtPoint(Point point);
+
+    Point getAveragePositionOfRobotsWithLabel(Point startingPosition, ILabel label, double distance);
 }

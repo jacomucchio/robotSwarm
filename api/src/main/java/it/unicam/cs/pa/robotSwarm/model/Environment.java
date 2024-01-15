@@ -2,6 +2,7 @@ package it.unicam.cs.pa.robotSwarm.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,10 +66,14 @@ public class Environment implements IEnvironment{
                 .filter(robot -> calculateDistance(robot.getPosition(), referencePoint) <= distance)
                 .collect(Collectors.toList());
     }
+    @Override
     public Point getAveragePositionOfRobotsWithLabel(Point startingPosition, ILabel label, double distance) {
         List<IRobot> robotsWithLabel = getRobotsWithinDistanceWithLabel(startingPosition,distance,label);
         if (robotsWithLabel.isEmpty()) {
-            return null;
+            Random random = new Random();
+            double randomX = -distance + random.nextDouble() * 2 * distance;
+            double randomY = -distance + random.nextDouble() * 2 * distance;
+            return new Point(randomX, randomY);
         }
 
         double sumX = 0.0;
