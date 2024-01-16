@@ -1,10 +1,9 @@
 package it.unicam.cs.pa.robotSwarm;
 
-import it.unicam.cs.pa.robotSwarm.model.MoveCommand;
-import it.unicam.cs.pa.robotSwarm.model.MoveRandomCommand;
+import it.unicam.cs.pa.robotSwarm.model.commands.MoveRandomCommand;
 import it.unicam.cs.pa.robotSwarm.model.Robot;
 import org.junit.jupiter.api.Test;
-import it.unicam.cs.pa.robotSwarm.model.Point;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoveCommandTest {

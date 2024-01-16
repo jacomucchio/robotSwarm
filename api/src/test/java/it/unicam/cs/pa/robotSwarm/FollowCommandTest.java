@@ -1,6 +1,7 @@
 package it.unicam.cs.pa.robotSwarm;
 
 import it.unicam.cs.pa.robotSwarm.model.*;
+import it.unicam.cs.pa.robotSwarm.model.commands.FollowCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

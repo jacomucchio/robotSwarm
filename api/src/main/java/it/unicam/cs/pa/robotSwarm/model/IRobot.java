@@ -5,7 +5,7 @@ import java.util.Set;
 public interface IRobot {
     void move(double x, double y, double speed);
     void stop();
-    void signal();
+    void signal(ILabel label);
     void unsignal();
     ILabel getLabel();
 

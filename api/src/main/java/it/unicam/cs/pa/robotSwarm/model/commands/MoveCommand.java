@@ -1,6 +1,9 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.model.commands;
 
-public class MoveCommand implements ICommand{
+import it.unicam.cs.pa.robotSwarm.model.ICommand;
+import it.unicam.cs.pa.robotSwarm.model.IRobot;
+
+public class MoveCommand implements ICommand {
     IRobot robot;
     private double x, y, speed;
 

@@ -1,6 +1,10 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.model.commands;
 
-public class MoveRandomCommand implements ICommand{
+import it.unicam.cs.pa.robotSwarm.model.ICommand;
+import it.unicam.cs.pa.robotSwarm.model.IRobot;
+import it.unicam.cs.pa.robotSwarm.model.Point;
+
+public class MoveRandomCommand implements ICommand {
     private IRobot robot;
     private double x1,x2,y1,y2;
     private Point randomPosition;

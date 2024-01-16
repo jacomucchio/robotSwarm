@@ -1,6 +1,8 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Robot implements IRobot{
     private Point position;
@@ -8,12 +10,15 @@ public class Robot implements IRobot{
     private Point target;
     private double speed;
     private boolean isShowingCondition;
+
     public Robot() {
         this.position = new Point(0, 0);
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
+
     }
+
     public Robot(Point position) {
         this.position = position;
         this.target= new Point(0,0);
@@ -35,8 +40,9 @@ public class Robot implements IRobot{
     }
 
     @Override
-    public void signal() {
+    public void signal(ILabel label) {
         this.isShowingCondition=true;
+        this.label=label;
     }
     @Override
     public void unsignal() {

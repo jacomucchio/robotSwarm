@@ -1,6 +1,8 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.model.commands;
 
-public class FollowCommand implements ICommand{
+import it.unicam.cs.pa.robotSwarm.model.*;
+
+public class FollowCommand implements ICommand {
     private IRobot robot;
     private IEnvironment environment;
     double dist,speed;

@@ -1,6 +1,6 @@
 package it.unicam.cs.pa.robotSwarm;
 
-import it.unicam.cs.pa.robotSwarm.model.MoveCommand;
+import it.unicam.cs.pa.robotSwarm.model.commands.MoveCommand;
 import it.unicam.cs.pa.robotSwarm.model.Point;
 import it.unicam.cs.pa.robotSwarm.model.Robot;
 import org.junit.jupiter.api.Test;
