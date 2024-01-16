@@ -19,4 +19,11 @@ public class SignalTest {
         usc.execute();
         assertFalse(r1.isShowingCondition());
     }
+    @Test
+    public void testExecutionIsDone(){
+        Robot r1 = new Robot();
+        SignalCommand sc = new SignalCommand(r1,new BasicLabel("_A"));
+        sc.execute();
+        assertTrue(sc.isExecuted());
+    }
 }

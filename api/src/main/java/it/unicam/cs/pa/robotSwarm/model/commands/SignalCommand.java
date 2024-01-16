@@ -21,6 +21,6 @@ public class SignalCommand implements ICommand {
 
     @Override
     public boolean isExecuted() {
-        return false;
+        return isExecuted;
     }
 }
