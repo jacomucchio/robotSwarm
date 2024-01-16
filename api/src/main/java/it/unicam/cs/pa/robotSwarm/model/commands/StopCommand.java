@@ -13,6 +13,7 @@ public class StopCommand implements ICommand {
     public void execute() {
         robot.stop();
         isExecuted=true;
+        System.out.println("sto eseguendo Stop");
     }
 
     @Override

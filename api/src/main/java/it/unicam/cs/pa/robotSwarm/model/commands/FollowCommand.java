@@ -21,6 +21,7 @@ public class FollowCommand implements ICommand {
     public void execute() {
         robot.move(target.getX(), target.getY(), speed);
         isExecuted=true;
+        System.out.println("sto eseguendo Follow");
     }
 
     @Override

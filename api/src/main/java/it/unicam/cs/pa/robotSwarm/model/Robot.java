@@ -50,7 +50,6 @@ public class Robot implements IRobot{
 
     @Override
     public void move(double x, double y, double speed) {
-        System.out.println("Mi sto muovendo verso:"+ x+","+ y+" alla velocità "+speed);
         this.target=new Point(x,y);
         this.speed=speed;
     }

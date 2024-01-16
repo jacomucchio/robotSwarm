@@ -14,6 +14,7 @@ public class UnsignalCommand implements ICommand {
     public void execute() {
         robot.unsignal();
         isExecuted=true;
+        System.out.println("sto eseguendo Unsignal");
     }
 
     @Override

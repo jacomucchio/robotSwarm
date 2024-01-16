@@ -17,6 +17,7 @@ public class SignalCommand implements ICommand {
     public void execute() {
         robot.signal(label);
         isExecuted=true;
+        System.out.println("sto eseguendo Signal");
     }
 
     @Override

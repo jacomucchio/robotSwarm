@@ -22,6 +22,7 @@ public class MoveRandomCommand implements ICommand {
     public void execute() {
         robot.move(randomPosition.getX(),randomPosition.getY(), robot.getSpeed());
         isExecuted=true;
+        System.out.println("sto eseguendo MoveRandom");
     }
 
     @Override

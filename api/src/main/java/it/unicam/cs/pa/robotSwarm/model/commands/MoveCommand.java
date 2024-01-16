@@ -4,7 +4,7 @@ import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
 public class MoveCommand implements ICommand {
-    IRobot robot;
+    private IRobot robot;
     private double x, y, speed;
 
     private boolean isExecuted=false;
@@ -29,6 +29,7 @@ public class MoveCommand implements ICommand {
     public void execute() {
         robot.move(x,y,speed);
         isExecuted=true;
+        System.out.println("sto eseguendo Move");
     }
 
     @Override
