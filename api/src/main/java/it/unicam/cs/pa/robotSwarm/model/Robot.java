@@ -10,12 +10,15 @@ public class Robot implements IRobot{
     private Point target;
     private double speed;
     private boolean isShowingCondition;
+    private int instructionCounter=0;;
+    private List<ICommand> program;
 
     public Robot() {
         this.position = new Point(0, 0);
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
+        this.program = new ArrayList<>();
 
     }
 
@@ -24,6 +27,21 @@ public class Robot implements IRobot{
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
+    }
+    public Robot(Point position, List<ICommand>program) {
+        this.position = position;
+        this.target= new Point(0,0);
+        this.speed=0;
+        isShowingCondition=false;
+        this.program=program;
+    }
+
+    public void executeCommand(){
+        ICommand command = program.get(instructionCounter);
+        command.execute();
+        if(command.isExecuted()){
+            instructionCounter++;
+        }
     }
 
     @Override

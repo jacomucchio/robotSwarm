@@ -7,6 +7,8 @@ public class MoveCommand implements ICommand {
     IRobot robot;
     private double x, y, speed;
 
+    private boolean isExecuted=false;
+
     public MoveCommand(IRobot robot, double x, double y, double speed) {
         validateParameters(x,y);
         this.robot = robot;
@@ -26,5 +28,13 @@ public class MoveCommand implements ICommand {
     @Override
     public void execute() {
         robot.move(x,y,speed);
+        isExecuted=true;
     }
+
+    @Override
+    public boolean isExecuted() {
+        return isExecuted;
+    }
+
+
 }

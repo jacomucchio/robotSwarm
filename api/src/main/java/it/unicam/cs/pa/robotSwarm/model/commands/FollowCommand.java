@@ -7,6 +7,7 @@ public class FollowCommand implements ICommand {
     private IEnvironment environment;
     double dist,speed;
     Point target;
+    private boolean isExecuted=false;
     public FollowCommand(IRobot r, IEnvironment e, ILabel l, double dist, double speed) {
         this.robot=r;
         this.environment=e;
@@ -19,6 +20,12 @@ public class FollowCommand implements ICommand {
     @Override
     public void execute() {
         robot.move(target.getX(), target.getY(), speed);
+        isExecuted=true;
+    }
+
+    @Override
+    public boolean isExecuted() {
+        return isExecuted;
     }
 
 }

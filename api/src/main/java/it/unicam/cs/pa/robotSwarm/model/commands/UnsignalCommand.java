@@ -5,6 +5,7 @@ import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
 public class UnsignalCommand implements ICommand {
     private IRobot robot;
+    private boolean isExecuted=false;
     public UnsignalCommand(IRobot robot) {
         this.robot=robot;
     }
@@ -12,5 +13,11 @@ public class UnsignalCommand implements ICommand {
     @Override
     public void execute() {
         robot.unsignal();
+        isExecuted=true;
+    }
+
+    @Override
+    public boolean isExecuted() {
+        return isExecuted;
     }
 }
