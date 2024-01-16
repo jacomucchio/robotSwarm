@@ -38,10 +38,12 @@ public class Robot implements IRobot{
     }
 
     public void executeCommand(){
-        ICommand command = program.get(instructionCounter);
-        command.execute();
-        if(command.isExecuted()){
-            instructionCounter++;
+        if(instructionCounter<program.size()) {
+            ICommand command = program.get(instructionCounter);
+            command.execute();
+            if (command.isExecuted()) {
+                instructionCounter++;
+            }
         }
     }
     public void addCommand(ICommand command){
