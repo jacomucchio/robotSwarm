@@ -27,6 +27,7 @@ public class Robot implements IRobot{
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
+        this.program = new ArrayList<>();
     }
     public Robot(Point position, List<ICommand>program) {
         this.position = position;
@@ -42,6 +43,9 @@ public class Robot implements IRobot{
         if(command.isExecuted()){
             instructionCounter++;
         }
+    }
+    public void addCommand(ICommand command){
+        this.program.add(command);
     }
 
     @Override
