@@ -1,18 +1,21 @@
 package it.unicam.cs.pa.robotSwarm.model.commands;
 
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
+import it.unicam.cs.pa.robotSwarm.model.ILabel;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
 public class UnsignalCommand implements ICommand {
     private IRobot robot;
+    private ILabel label;
     private boolean isExecuted=false;
-    public UnsignalCommand(IRobot robot) {
+    public UnsignalCommand(IRobot robot, ILabel label) {
         this.robot=robot;
+        this.label=label;
     }
 
     @Override
     public void execute() {
-        robot.unsignal();
+        robot.unsignal(label);
         isExecuted=true;
         System.out.println("sto eseguendo Unsignal");
     }

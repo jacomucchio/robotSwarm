@@ -6,7 +6,7 @@ public interface IRobot {
     void move(double x, double y, double speed);
     void stop();
     void signal(ILabel label);
-    void unsignal();
+    void unsignal(ILabel label);
     ILabel getLabel();
 
     void addLabel(ILabel label);
@@ -20,5 +20,6 @@ public interface IRobot {
     boolean isShowingCondition();
     void setShowingCondition(boolean condition);
     void executeCommand();
+    void addCommand(ICommand command);
 
 }

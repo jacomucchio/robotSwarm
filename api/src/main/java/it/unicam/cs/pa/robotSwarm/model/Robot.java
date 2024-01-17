@@ -46,6 +46,7 @@ public class Robot implements IRobot{
             }
         }
     }
+    @Override
     public void addCommand(ICommand command){
         this.program.add(command);
     }
@@ -68,8 +69,10 @@ public class Robot implements IRobot{
         this.label=label;
     }
     @Override
-    public void unsignal() {
-        this.isShowingCondition=false;
+    public void unsignal(ILabel label) {
+        if(this.label.equals(label)){
+            this.isShowingCondition=false;
+        }
     }
 
     @Override

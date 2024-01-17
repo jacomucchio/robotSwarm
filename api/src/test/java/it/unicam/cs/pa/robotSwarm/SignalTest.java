@@ -15,7 +15,7 @@ public class SignalTest {
         sc.execute();
         assertTrue(r1.isShowingCondition());
         assertEquals(new BasicLabel("_A"), r1.getLabel());
-        UnsignalCommand usc = new UnsignalCommand(r1);
+        UnsignalCommand usc = new UnsignalCommand(r1, new BasicLabel("_A"));
         usc.execute();
         assertFalse(r1.isShowingCondition());
     }

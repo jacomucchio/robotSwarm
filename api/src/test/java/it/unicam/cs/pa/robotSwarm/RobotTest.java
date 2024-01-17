@@ -26,7 +26,7 @@ public class RobotTest {
         r1.addCommand(new FollowCommand(r1,env,new BasicLabel("_A"),20,20));
         r1.addCommand(new MoveRandomCommand(r1,-1,1,-1,1));
         r1.addCommand(new SignalCommand(r1,new BasicLabel("_A")));
-        r1.addCommand(new UnsignalCommand(r1));
+        r1.addCommand(new UnsignalCommand(r1, new BasicLabel("_A")));
         r1.executeCommand();
         assertEquals(4,r1.getSpeed());
         r1.executeCommand();
