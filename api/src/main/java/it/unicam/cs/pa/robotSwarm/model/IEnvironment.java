@@ -53,5 +53,7 @@ public interface IEnvironment {
      */
     List<IArea> getAreasAtPoint(Point point);
 
+    List<IArea> getAreasAtPointWithLabel(Point point, ILabel label);
+
     Point getAveragePositionOfRobotsWithLabel(Point startingPosition, ILabel label, double distance);
 }

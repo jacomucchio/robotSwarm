@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EnvironmentTest {
     private Environment environment;
@@ -108,5 +107,22 @@ public class EnvironmentTest {
         environment.addRobot(robot4);
         assertEquals(new Point(0,0),
                 environment.getAveragePositionOfRobotsWithLabel(robot1.getPosition(),new BasicLabel("_A"),5));
+    }
+    @Test
+    public void testRobotShouldBeInsideArea(){
+        Environment e = new Environment();
+        Robot r1 = new Robot();
+        Circle c = new Circle(new Point(0,0),10,new BasicLabel("_A"));
+        Circle c1 = new Circle(new Point(10,10),1,new BasicLabel("_A"));
+        Circle c2 = new Circle(new Point(0,0),10,new BasicLabel("_A1"));
+        Rectangle r = new Rectangle(new BasicLabel("_A"),new Point(0,0),10,20);
+        e.addRobot(r1);
+        e.addArea(c);
+        assertFalse(e.getAreasAtPointWithLabel(r1.getPosition(),new BasicLabel("_A")).isEmpty());
+        e.addArea(r);
+        e.addArea(c1);
+        e.addArea(c2);
+        assertEquals(2, e.getAreasAtPointWithLabel(r1.getPosition(),new BasicLabel("_A")).size());
+
     }
 }

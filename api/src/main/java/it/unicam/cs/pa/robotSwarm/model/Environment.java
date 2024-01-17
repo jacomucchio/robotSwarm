@@ -61,6 +61,13 @@ public class Environment implements IEnvironment{
                 .filter(area -> area.containsPoint(point))
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<IArea> getAreasAtPointWithLabel(Point point, ILabel label) {
+        return areas.stream()
+                .filter(area -> area.containsPoint(point) && area.getLabel().equals(label))
+                .collect(Collectors.toList());
+    }
+
     public List<IRobot> getRobotsWithinDistanceWithLabel(Point referencePoint, double distance,ILabel label) {
         return getRobotsDisplayingCondition(label).stream()
                 .filter(robot -> calculateDistance(robot.getPosition(), referencePoint) <= distance)
