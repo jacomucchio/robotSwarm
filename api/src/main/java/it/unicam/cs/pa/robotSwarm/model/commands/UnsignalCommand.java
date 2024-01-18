@@ -12,6 +12,9 @@ public class UnsignalCommand implements ICommand {
         this.robot=robot;
         this.label=label;
     }
+    public UnsignalCommand(ILabel label) {
+        this.label=label;
+    }
 
     @Override
     public void execute() {
@@ -23,5 +26,14 @@ public class UnsignalCommand implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 }

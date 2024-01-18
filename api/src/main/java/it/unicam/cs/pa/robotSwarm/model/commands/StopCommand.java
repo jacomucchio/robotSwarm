@@ -9,6 +9,8 @@ public class StopCommand implements ICommand {
     public StopCommand(IRobot robot) {
         this.robot = robot;
     }
+    public StopCommand() {
+    }
     @Override
     public void execute() {
         robot.stop();
@@ -19,5 +21,14 @@ public class StopCommand implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 }

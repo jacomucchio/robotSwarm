@@ -16,6 +16,12 @@ public class MoveCommand implements ICommand {
         this.y = y;
         this.speed = speed;
     }
+    public MoveCommand(double x, double y, double speed) {
+        validateParameters(x,y);
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+    }
     public void validateParameters(double x, double y){
         if ((x < -1 || x > 1) || (y < -1 || y > 1)) {
             throw new IllegalArgumentException("x e y devono essere compresi tra -1 e 1");
@@ -35,6 +41,15 @@ public class MoveCommand implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 
 

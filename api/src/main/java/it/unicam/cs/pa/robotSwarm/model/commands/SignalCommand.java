@@ -12,6 +12,9 @@ public class SignalCommand implements ICommand {
         this.robot=robot;
         this.label=label;
     }
+    public SignalCommand(ILabel label) {
+        this.label=label;
+    }
 
     @Override
     public void execute() {
@@ -23,5 +26,14 @@ public class SignalCommand implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 }

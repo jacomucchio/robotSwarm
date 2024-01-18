@@ -21,6 +21,12 @@ public class UntilCommad implements ICommand {
         this.environment = environment;
         this.commands = commands;
     }
+    public UntilCommad(ILabel label, IEnvironment environment, List<ICommand> commands) {
+        this.robot = robot;
+        this.label = label;
+        this.environment = environment;
+        this.commands = commands;
+    }
 
     @Override
     public void execute() {
@@ -34,6 +40,15 @@ public class UntilCommad implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 
     public void checkIterationStatus() {

@@ -203,7 +203,7 @@ public final class FollowMeParser {
     }
 
     private void callMoveMethod(FollowMeParserHandler handler, String[] elements) throws FollowMeParserException {
-        if (elements.length == 6) {
+        if (elements.length == 4) {
             handler.moveCommand(toDoubleArray(1,elements));
         } else {
             throwSyntaxErrorException();

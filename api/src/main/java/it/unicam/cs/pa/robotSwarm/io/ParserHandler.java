@@ -11,58 +11,100 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParserHandler implements FollowMeParserHandler {
-    //TODO i comandi vengono solo aggiunti alla lista ma non assegnati ai robot
-    private IRobot robot;
-    private List<ICommand> commands;
     private IEnvironment environment;
+    private List<IRobot>robots;
+    private List<ICommand>parsedCommands;
+    /*
+    TODO creare un interfaccia solo per i comandi iterativi in modo da
+         poter usare il metodo addCommand per aggiungere comandi alla lista
+     */
 
-    public ParserHandler(IRobot robot, IEnvironment environment) {
-        this.robot = robot;
-        this.commands = new ArrayList<>();
+    private List<RepeatCommand> iterativeInstructions;
+
+    public ParserHandler(IEnvironment environment, List<IRobot>robots) {
         this.environment=environment;
+        this.iterativeInstructions=new ArrayList<>();
+        this.robots=robots;
+        this.parsedCommands=new ArrayList<>();
+
     }
 
     @Override
     public void parsingStarted() {
-        commands.clear();
+        System.out.println("Parsing Iniziato");
     }
 
     @Override
     public void parsingDone() {
-
+        System.out.println("Parsing Completato");
+        for(IRobot r:robots)
+        {
+            for(ICommand command: parsedCommands){
+                command.setReceiver(r);
+                r.addCommand(command);
+            }
+        }
     }
 
     @Override
     public void moveCommand(double[] args) {
-        commands.add(new MoveCommand(robot,args[0],args[1],args[2]));
+        MoveCommand mc = new MoveCommand(args[0], args[1], args[2]);
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(mc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(mc);
+        }
     }
 
     @Override
     public void moveRandomCommand(double[] args) {
-        commands.add(new MoveRandomCommand(robot,args[0],args[1],args[2],args[3]));
+        MoveRandomCommand mrc = new MoveRandomCommand(args[0],args[1],args[2],args[3]);
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(mrc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(mrc);
+        }
     }
 
     @Override
     public void signalCommand(String label) {
-        commands.add(new SignalCommand(robot,new BasicLabel(label)));
-        //TODO cancellare qua sotto
-        robot.addCommand(commands.get(0));
-
+        SignalCommand sc = new SignalCommand(new BasicLabel(label));
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(sc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(sc);
+        }
     }
 
     @Override
     public void unsignalCommand(String label) {
-        commands.add(new UnsignalCommand(robot,new BasicLabel(label)));
+        UnsignalCommand uc = new UnsignalCommand(new BasicLabel(label));
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(uc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(uc);
+        }
     }
 
     @Override
     public void followCommand(String label, double[] args) {
-        commands.add(new FollowCommand(robot,environment, new BasicLabel(label),args[0],args[1]));
+        FollowCommand fc = new FollowCommand(environment, new BasicLabel(label),args[0],args[1]);
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(fc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(fc);
+        }
+
     }
 
     @Override
     public void stopCommand() {
-        commands.add(new StopCommand(robot));
+        StopCommand stop = new StopCommand();
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(stop);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(stop);
+        }
     }
 
     @Override
@@ -72,7 +114,13 @@ public class ParserHandler implements FollowMeParserHandler {
 
     @Override
     public void repeatCommandStart(int n) {
-        //TODO implementare
+        /*
+        TODO modificare in modo tale che venga creato un comando generico
+             e non specifico per ogni robot
+         */
+        iterativeInstructions.add(new RepeatCommand(n));
+
+
     }
 
     @Override
@@ -88,5 +136,19 @@ public class ParserHandler implements FollowMeParserHandler {
     @Override
     public void doneCommand() {
         //TODO implementare
+        System.out.println(iterativeInstructions.size());
+        if(iterativeInstructions.size()>1)
+        {
+            iterativeInstructions.get(iterativeInstructions.size()-2).
+                    addCommand(iterativeInstructions.get(iterativeInstructions.size()-1));
+            iterativeInstructions.remove(iterativeInstructions.size()-1);
+        }else{
+            parsedCommands.add(iterativeInstructions.get(0));
+            iterativeInstructions.remove(0);
+        }
+
     }
+
+
+
 }

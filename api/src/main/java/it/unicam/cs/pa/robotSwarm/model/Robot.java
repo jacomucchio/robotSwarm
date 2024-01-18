@@ -51,6 +51,8 @@ public class Robot implements IRobot{
         this.program.add(command);
     }
 
+
+
     @Override
     public void move(double x, double y, double speed) {
         this.target=new Point(x,y);

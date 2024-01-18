@@ -7,6 +7,7 @@ public interface IRobot {
     void stop();
     void signal(ILabel label);
     void unsignal(ILabel label);
+
     ILabel getLabel();
 
     void addLabel(ILabel label);

@@ -9,9 +9,13 @@ public class DoForeverCommand implements ICommand {
     private IRobot robot;
     private List<ICommand> commands;
     private int icounter;
+    private boolean isExecuted=false;
 
     public DoForeverCommand(IRobot robot, List<ICommand> commands) {
         this.robot = robot;
+        this.commands=commands;
+    }
+    public DoForeverCommand(List<ICommand> commands) {
         this.commands=commands;
     }
 
@@ -30,6 +34,16 @@ public class DoForeverCommand implements ICommand {
 
     @Override
     public boolean isExecuted() {
-        return false;
+        return isExecuted;
     }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
+    }
+
 }

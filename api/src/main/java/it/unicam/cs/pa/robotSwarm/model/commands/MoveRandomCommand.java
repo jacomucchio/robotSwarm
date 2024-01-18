@@ -18,6 +18,14 @@ public class MoveRandomCommand implements ICommand {
         this.y2=y2;
         calculateRandomPosition();
     }
+    public MoveRandomCommand(double x1, double x2,double y1, double y2) {
+        validateParameters(x1,x2,y1,y2);
+        this.x1=x1;
+        this.x2=x2;
+        this.y1=y1;
+        this.y2=y2;
+        calculateRandomPosition();
+    }
     @Override
     public void execute() {
         robot.move(randomPosition.getX(),randomPosition.getY(), robot.getSpeed());
@@ -28,6 +36,15 @@ public class MoveRandomCommand implements ICommand {
     @Override
     public boolean isExecuted() {
         return isExecuted;
+    }
+    @Override
+    public void setExecuted(boolean executed) {
+        this.isExecuted=executed;
+    }
+
+    @Override
+    public void setReceiver(IRobot receiver) {
+        this.robot=receiver;
     }
 
     public void validateParameters(double x1, double x2, double y1,double y2 ){
