@@ -5,9 +5,10 @@ import it.unicam.cs.pa.robotSwarm.model.IEnvironment;
 import it.unicam.cs.pa.robotSwarm.model.ILabel;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UntilCommad implements IIterativeCommands {
+public class UntilCommand implements IIterativeCommands {
     private IRobot robot;
     private ILabel label;
     private IEnvironment environment;
@@ -15,16 +16,21 @@ public class UntilCommad implements IIterativeCommands {
     private boolean isExecuted = false;
     private int icounter; //contatore istruzioni
 
-    public UntilCommad(IRobot robot, ILabel label, IEnvironment environment, List<ICommand> commands) {
+    public UntilCommand(IRobot robot, ILabel label, IEnvironment environment, List<ICommand> commands) {
         this.robot = robot;
         this.label = label;
         this.environment = environment;
         this.commands = commands;
     }
-    public UntilCommad(ILabel label, IEnvironment environment, List<ICommand> commands) {
+    public UntilCommand(ILabel label, IEnvironment environment, List<ICommand> commands) {
         this.label = label;
         this.environment = environment;
         this.commands = commands;
+    }
+    public UntilCommand(ILabel label, IEnvironment environment) {
+        this.label = label;
+        this.environment = environment;
+        this.commands = new ArrayList<>();
     }
 
     @Override
@@ -40,17 +46,23 @@ public class UntilCommad implements IIterativeCommands {
     public boolean isExecuted() {
         return isExecuted;
     }
-    @Override
-    public void setExecuted(boolean executed) {
-        this.isExecuted=executed;
-    }
 
     @Override
     public void setReceiver(IRobot receiver) {
         this.robot=receiver;
+        for(ICommand cmd: commands)
+        {
+            cmd.setReceiver(receiver);
+        }
     }
 
     public void checkIterationStatus() {
+        if (commands.get(icounter) instanceof IIterativeCommands ic) {
+            if(!ic.isExecuted()){
+                return;
+            } else ic.resetStatus();
+        }
+
         if (icounter == commands.size() - 1) {
             icounter = 0;
         } else icounter++;
@@ -65,5 +77,10 @@ public class UntilCommad implements IIterativeCommands {
     @Override
     public void resetStatus() {
         icounter=0;
+    }
+    @Override
+    public void addCommand(ICommand command)
+    {
+        this.commands.add(command);
     }
 }

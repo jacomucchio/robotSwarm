@@ -22,10 +22,6 @@ public class StopCommand implements ICommand {
     public boolean isExecuted() {
         return isExecuted;
     }
-    @Override
-    public void setExecuted(boolean executed) {
-        this.isExecuted=executed;
-    }
 
     @Override
     public void setReceiver(IRobot receiver) {

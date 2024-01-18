@@ -25,7 +25,7 @@ public class UntilTest {
         cmdToRepeat.add(cm1);
         cmdToRepeat.add(cm2);
 
-        UntilCommad cm3 = new UntilCommad(r1,new BasicLabel("_A"),env,cmdToRepeat);
+        UntilCommand cm3 = new UntilCommand(r1,new BasicLabel("_A"),env,cmdToRepeat);
         SignalCommand cm4 = new SignalCommand(r1,new BasicLabel("_A"));
         r1.addCommand(cm1);
         r1.addCommand(cm2);

@@ -39,6 +39,7 @@ public class RepeatCommand implements IIterativeCommands {
         commands.get(icounter).execute();
         checkIterationStatus();
     }
+    //TODO aggiungere checkIterationStatus() all'interfaccia IIterativeCommands
     public void checkIterationStatus() {
         /*
         if(commands.get(icounter) instanceof RepeatCommand rp)
@@ -52,6 +53,13 @@ public class RepeatCommand implements IIterativeCommands {
             }
         }
         */
+        /*
+        Controllo se il comando che è stato eseguito è un comando iterativo
+        In caso affermativo se quel comando non ha completato l'esecuzione
+        della lista di comandi che deve eseguire non viene incrementato il contatore
+        delle istruzioni in modo tale da continuare ad esguire il comando finchè non
+        ha completato l'esecuzione
+         */
         if (commands.get(icounter) instanceof IIterativeCommands ic) {
             if(!ic.isExecuted()){
                 return;
@@ -71,10 +79,6 @@ public class RepeatCommand implements IIterativeCommands {
     public boolean isExecuted() {
         return isExecuted;
     }
-    @Override
-    public void setExecuted(boolean executed) {
-        this.isExecuted=executed;
-    }
 
     @Override
     public void setReceiver(IRobot receiver) {
@@ -84,7 +88,7 @@ public class RepeatCommand implements IIterativeCommands {
             cmd.setReceiver(receiver);
         }
     }
-
+    @Override
     public void addCommand(ICommand command)
     {
         this.commands.add(command);

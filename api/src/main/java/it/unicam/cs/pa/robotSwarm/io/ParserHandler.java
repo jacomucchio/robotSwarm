@@ -19,7 +19,7 @@ public class ParserHandler implements FollowMeParserHandler {
          poter usare il metodo addCommand per aggiungere comandi alla lista
      */
 
-    private List<RepeatCommand> iterativeInstructions;
+    private List<IIterativeCommands> iterativeInstructions;
 
     public ParserHandler(IEnvironment environment, List<IRobot>robots) {
         this.environment=environment;
@@ -126,11 +126,13 @@ public class ParserHandler implements FollowMeParserHandler {
     @Override
     public void untilCommandStart(String label) {
         //TODO implementare
+        iterativeInstructions.add(new UntilCommand(new BasicLabel(label),environment));
     }
 
     @Override
     public void doForeverStart() {
         //TODO implementare
+        iterativeInstructions.add(new DoForeverCommand());
     }
 
     @Override

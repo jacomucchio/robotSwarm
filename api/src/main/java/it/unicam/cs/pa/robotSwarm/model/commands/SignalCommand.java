@@ -28,11 +28,6 @@ public class SignalCommand implements ICommand {
         return isExecuted;
     }
     @Override
-    public void setExecuted(boolean executed) {
-        this.isExecuted=executed;
-    }
-
-    @Override
     public void setReceiver(IRobot receiver) {
         this.robot=receiver;
     }

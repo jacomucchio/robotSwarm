@@ -117,7 +117,7 @@ public final class FollowMeParser {
     }
 
     private void callForeverMethod(FollowMeParserHandler handler, String[] elements) throws FollowMeParserException {
-        if (elements.length == 1) {
+        if (elements.length == 2) {
             handler.doForeverStart();
         } else {
             throwSyntaxErrorException();
