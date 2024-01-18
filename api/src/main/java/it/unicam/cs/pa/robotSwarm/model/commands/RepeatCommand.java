@@ -7,7 +7,7 @@ import it.unicam.cs.pa.robotSwarm.model.Robot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepeatCommand implements ICommand {
+public class RepeatCommand implements IIterativeCommands {
     private IRobot robot;
     private boolean isExecuted=false;
     private int iterations; //contatore iterazione
@@ -40,6 +40,7 @@ public class RepeatCommand implements ICommand {
         checkIterationStatus();
     }
     public void checkIterationStatus() {
+        /*
         if(commands.get(icounter) instanceof RepeatCommand rp)
         {
             System.out.println("sto controllando");
@@ -50,6 +51,13 @@ public class RepeatCommand implements ICommand {
                 rp.resetStatus();
             }
         }
+        */
+        if (commands.get(icounter) instanceof IIterativeCommands ic) {
+            if(!ic.isExecuted()){
+                return;
+            } else ic.resetStatus();
+        }
+
         if(icounter==commands.size()-1){
             if(iterations>1){
                 iterations--;
@@ -89,7 +97,7 @@ public class RepeatCommand implements ICommand {
     TODO metodo che può essere utile per resettare lo stato dei comandi iterativi se
          devono essere ripetuti
      */
-
+    @Override
     public void resetStatus()
     {
         this.icounter=0;

@@ -46,4 +46,5 @@ public class DoForeverCommand implements ICommand {
         this.robot=receiver;
     }
 
+
 }

@@ -7,7 +7,7 @@ import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
 import java.util.List;
 
-public class UntilCommad implements ICommand {
+public class UntilCommad implements IIterativeCommands {
     private IRobot robot;
     private ILabel label;
     private IEnvironment environment;
@@ -22,7 +22,6 @@ public class UntilCommad implements ICommand {
         this.commands = commands;
     }
     public UntilCommad(ILabel label, IEnvironment environment, List<ICommand> commands) {
-        this.robot = robot;
         this.label = label;
         this.environment = environment;
         this.commands = commands;
@@ -61,5 +60,10 @@ public class UntilCommad implements ICommand {
             isExecuted=true;
             return isExecuted;
         } else return isExecuted;
+    }
+
+    @Override
+    public void resetStatus() {
+        icounter=0;
     }
 }
