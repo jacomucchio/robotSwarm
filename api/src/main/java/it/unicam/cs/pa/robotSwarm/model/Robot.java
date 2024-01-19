@@ -4,6 +4,7 @@ package it.unicam.cs.pa.robotSwarm.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Robot implements IRobot{
     private Point position;
     private ILabel label;
@@ -35,6 +36,17 @@ public class Robot implements IRobot{
         this.speed=0;
         isShowingCondition=false;
         this.program=program;
+    }
+
+    //costruttore per creare un robot ad una posizione randomica
+    public Robot(double x1, double x2,double y1, double y2) {
+        double randomX = x1 + Math.random() * (x2 - x1);
+        double randomY = y1 + Math.random() * (y2 - y1);
+        this.position = new Point(randomX, randomY);
+        this.target = new Point(randomX, randomY);
+        this.speed = 0;
+        isShowingCondition = false;
+        this.program = new ArrayList<>();
     }
 
     public void executeCommand(){
