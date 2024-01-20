@@ -64,11 +64,11 @@ public class Robot implements IRobot{
     }
 
 
-
     @Override
     public void move(double x, double y, double speed) {
-        this.target=new Point(x,y);
-        this.speed=speed;
+        //this.target=new Point(x,y);
+        //this.speed=speed;
+        DirectionCalculator direction = new DirectionCalculator(this.getPosition(),new Point(x,y),speed);
     }
 
     @Override

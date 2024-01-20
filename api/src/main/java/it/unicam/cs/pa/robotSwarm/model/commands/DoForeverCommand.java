@@ -26,7 +26,6 @@ public class DoForeverCommand implements IIterativeCommands {
     @Override
     public void execute() {
         System.out.println("sto eseguendo DoForever");
-
         commands.get(icounter).execute();
         checkIterationStatus();
     }

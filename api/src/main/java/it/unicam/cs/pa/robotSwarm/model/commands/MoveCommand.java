@@ -24,11 +24,11 @@ public class MoveCommand implements ICommand {
     }
     public void validateParameters(double x, double y){
         if ((x < -1 || x > 1) || (y < -1 || y > 1)) {
-            throw new IllegalArgumentException("x e y devono essere compresi tra -1 e 1");
+            throw new IllegalArgumentException("x and y must be between -1 and 1");
         }
 
         if (x == 0 && y == 0) {
-            throw new IllegalArgumentException("Solo uno tra x e y può essere uguale a 0");
+            throw new IllegalArgumentException("Only one of x and y can be equal to 0");
         }
     }
     @Override
