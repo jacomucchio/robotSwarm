@@ -25,4 +25,10 @@ public class Circle implements IArea{
     public double getRadius() {
         return radius;
     }
+    @Override
+    public String toString() {
+        return "[Cerchio con label : "+getLabel()+
+                "\n alla posizione: "+getCenter()+
+                "\n con raggio: "+getRadius()+ "]\n";
+    }
 }

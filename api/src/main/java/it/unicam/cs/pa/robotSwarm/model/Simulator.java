@@ -1,7 +1,8 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
 import it.unicam.cs.followme.utilities.FollowMeParser;
-import it.unicam.cs.pa.robotSwarm.io.ParserHandler;
+import it.unicam.cs.pa.robotSwarm.io.ParserManager;
+import it.unicam.cs.pa.robotSwarm.io.ProgramParserHandler;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -19,6 +20,7 @@ public class Simulator implements ISimulator{
     @Override
     public void simulate(double dt, double time) {
         setupSimulation();
+        System.out.println(environment.getAreas().toString());
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
             System.out.println("esecuzione numero: "+currentTime);
             for (IRobot robot : environment.getRobots()) {
@@ -45,27 +47,12 @@ public class Simulator implements ISimulator{
     }
     //TODO far si che setupSimulation faccia il parsing dei comandi e dell'ambiente
     public void setupSimulation(){
-        System.out.println("L'environment contiene" +environment.getRobots().stream().toList());
-        ParserHandler cmdParser = new ParserHandler(environment);
-        FollowMeParser generalParser = new FollowMeParser(cmdParser);
-        String fileName = "src/main/java/it/unicam/cs/pa/robotSwarm/io/robotInstructions.txt";
-        File file = Paths.get(fileName).toFile();
-        try {
-            generalParser.parseRobotProgram(file);
-            System.out.println("ho letto il file");
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Gestisci eventuali eccezioni qui
-        }
+        File rbtInstructionFIle=
+                Paths.get("src/main/java/it/unicam/cs/pa/robotSwarm/io/robotInstructions.txt").toFile();
+        File areaConfigurationFile=
+                Paths.get("src/main/java/it/unicam/cs/pa/robotSwarm/io/areasConfiguration.txt").toFile();
+        ParserManager parserManager = new ParserManager(rbtInstructionFIle,areaConfigurationFile,environment);
+        parserManager.executeParsing();
     }
-    /*
-    public void executeParsing(Path programPath, Path areaPath){
-        ParserHandler cmdParser = new ParserHandler(environment);
-        //TODO aggiungere al parser anche il parser per le aree
-        FollowMeParser parser = new FollowMeParser(cmdParser);
-        parser.parseRobotProgram(programPath);
-        parser.parseEnvironment(areaPath);
-    }
-    */
 
 }

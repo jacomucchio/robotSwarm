@@ -28,6 +28,11 @@ public class Environment implements IEnvironment{
     }
 
     @Override
+    public void addAreas(List<IArea> areas) {
+        this.areas.addAll(areas);
+    }
+
+    @Override
     public List<IArea> getAreas() {
         return new ArrayList<>(areas);
     }

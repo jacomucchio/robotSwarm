@@ -7,7 +7,7 @@ import it.unicam.cs.pa.robotSwarm.model.commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParserHandler implements FollowMeParserHandler {
+public class ProgramParserHandler implements FollowMeParserHandler {
     private IEnvironment environment;
     private List<ICommand>parsedCommands;
     /*
@@ -22,7 +22,7 @@ public class ParserHandler implements FollowMeParserHandler {
      */
 
 
-    public ParserHandler(IEnvironment environment) {
+    public ProgramParserHandler(IEnvironment environment) {
         this.environment=environment;
         this.iterativeInstructions=new ArrayList<>();
         this.parsedCommands=new ArrayList<>();

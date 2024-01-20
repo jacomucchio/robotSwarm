@@ -37,4 +37,11 @@ public class Rectangle implements IArea{
     public double getHeight() {
         return height;
     }
+    @Override
+    public String toString() {
+        return "[Rettangolo con label : "+getLabel()+
+                "\n alla posizione: "+getCenter()+
+                "\n con altezza: "+getHeight()+
+                "\n con larghezza "+getWidth();
+    }
 }

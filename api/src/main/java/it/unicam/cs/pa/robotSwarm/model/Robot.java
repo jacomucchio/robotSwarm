@@ -141,9 +141,9 @@ public class Robot implements IRobot{
 
     @Override
     public String toString() {
-        return "Robot alla posizione: "+position+
+        return "[Robot alla posizione: "+position+
                 "\n con target: "+target+
                 "\n con velocita: "+speed+
-                "\n con label: "+label+"\n";
+                "\n con label: "+label+"]\n";
     }
 }

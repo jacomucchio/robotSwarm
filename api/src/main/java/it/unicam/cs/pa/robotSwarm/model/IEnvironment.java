@@ -13,6 +13,8 @@ public interface IEnvironment {
      */
     void addArea(IArea area);
 
+    void addAreas(List<IArea> areas);
+
     /**
      * Returns the list of areas in the environment.
      * @return the list of areas
