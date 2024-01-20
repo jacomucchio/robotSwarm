@@ -23,7 +23,7 @@ public class App {
         robots.add(robot);
         environment.addRobot(robot);
 
-        ParserHandler handler = new ParserHandler(environment,robots);
+        ParserHandler handler = new ParserHandler(environment);
         FollowMeParser parser = new FollowMeParser(handler);
         // Costruisci il percorso al file
         String fileName = "C:\\Users\\jacom\\IdeaProjects\\RobotSwarm\\api\\src\\main\\java\\it\\unicam\\cs\\pa\\robotSwarm\\io\\robotInstructions.txt";

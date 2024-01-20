@@ -12,6 +12,10 @@ public class Environment implements IEnvironment{
         areas = new ArrayList<>();
         robots = new ArrayList<>();
     }
+    public Environment(List<IRobot> robots) {
+        areas = new ArrayList<>();
+        this.robots = robots;
+    }
 
     @Override
     public void addRobot(IRobot robot) {

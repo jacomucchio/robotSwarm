@@ -14,7 +14,7 @@ public class SimulatorTest {
     @Test
     public void testCreateRobots() {
         Environment env = new Environment();
-        Simulator sim = new Simulator(env);
-        sim.generateRobots(10);
+        Simulator sim = new Simulator(5);
+        sim.simulate(1,10);
     }
 }

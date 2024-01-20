@@ -1,10 +1,7 @@
 package it.unicam.cs.pa.robotSwarm.io;
 
 import it.unicam.cs.followme.utilities.FollowMeParserHandler;
-import it.unicam.cs.pa.robotSwarm.model.BasicLabel;
-import it.unicam.cs.pa.robotSwarm.model.ICommand;
-import it.unicam.cs.pa.robotSwarm.model.IEnvironment;
-import it.unicam.cs.pa.robotSwarm.model.IRobot;
+import it.unicam.cs.pa.robotSwarm.model.*;
 import it.unicam.cs.pa.robotSwarm.model.commands.*;
 
 import java.util.ArrayList;
@@ -12,7 +9,6 @@ import java.util.List;
 
 public class ParserHandler implements FollowMeParserHandler {
     private IEnvironment environment;
-    private List<IRobot>robots;
     private List<ICommand>parsedCommands;
     /*
     TODO creare un interfaccia solo per i comandi iterativi in modo da
@@ -20,11 +16,15 @@ public class ParserHandler implements FollowMeParserHandler {
      */
 
     private List<IIterativeCommands> iterativeInstructions;
+    /*
+    TODO se passi l'environment i robot sono già presenti quindi non ha senso richiedere
+         la lista di robot
+     */
 
-    public ParserHandler(IEnvironment environment, List<IRobot>robots) {
+
+    public ParserHandler(IEnvironment environment) {
         this.environment=environment;
         this.iterativeInstructions=new ArrayList<>();
-        this.robots=robots;
         this.parsedCommands=new ArrayList<>();
 
     }
@@ -37,7 +37,7 @@ public class ParserHandler implements FollowMeParserHandler {
     @Override
     public void parsingDone() {
         System.out.println("Parsing Completato");
-        for(IRobot r:robots)
+        for(IRobot r:environment.getRobots())
         {
             for(ICommand command: parsedCommands){
                 command.setReceiver(r);
@@ -150,7 +150,8 @@ public class ParserHandler implements FollowMeParserHandler {
         }
 
     }
-
-
+    public IEnvironment getEnvironment(){
+        return environment;
+    }
 
 }
