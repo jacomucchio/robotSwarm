@@ -10,17 +10,8 @@ import java.util.List;
 public class ProgramParserHandler implements FollowMeParserHandler {
     private IEnvironment environment;
     private List<ICommand>parsedCommands;
-    /*
-    TODO creare un interfaccia solo per i comandi iterativi in modo da
-         poter usare il metodo addCommand per aggiungere comandi alla lista
-     */
 
     private List<IIterativeCommands> iterativeInstructions;
-    /*
-    TODO se passi l'environment i robot sono già presenti quindi non ha senso richiedere
-         la lista di robot
-     */
-
 
     public ProgramParserHandler(IEnvironment environment) {
         this.environment=environment;
@@ -39,8 +30,8 @@ public class ProgramParserHandler implements FollowMeParserHandler {
         System.out.println("Parsing Completato");
         for(IRobot r:environment.getRobots())
         {
+            System.out.println("il comando parsato è stato assegnato al robot alla posizione "+r.getPosition());
             for(ICommand command: parsedCommands){
-                command.setReceiver(r);
                 r.addCommand(command);
             }
         }
@@ -109,7 +100,12 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     @Override
     public void continueCommand(int s) {
-        //TODO implementare
+        ContinueCommand cc = new ContinueCommand(s);
+        if(iterativeInstructions.isEmpty()) {
+            parsedCommands.add(cc);
+        } else{
+            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(cc);
+        }
     }
 
     @Override
@@ -137,8 +133,7 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     @Override
     public void doneCommand() {
-        //TODO implementare
-        System.out.println(iterativeInstructions.size());
+
         if(iterativeInstructions.size()>1)
         {
             iterativeInstructions.get(iterativeInstructions.size()-2).

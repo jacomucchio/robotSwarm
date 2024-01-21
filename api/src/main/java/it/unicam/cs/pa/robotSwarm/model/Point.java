@@ -31,6 +31,9 @@ public class Point {
     public double distance(Point other) {
         return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
     }
+    public Point add(double dx, double dy) {
+        return new Point(this.x + dx, this.y + dy);
+    }
 
     @Override
     public String toString() {

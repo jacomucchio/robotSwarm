@@ -32,5 +32,27 @@ public class MoveCommandTest {
         moveCommand.execute();
         assertTrue(moveCommand.isExecuted());
     }
+    @Test
+    public void testMoveCmd(){
+        Robot r1 = new Robot(new Point(0,0));
+        Robot r2 = new Robot(new Point(10,10));
+        MoveCommand mc = new MoveCommand(1,0,5);
+        mc.setReceiver(r1);
+
+        MoveCommand mc1 = new MoveCommand(1,0,5);
+        mc1.setReceiver(r2);
+        r1.addCommand(mc);
+        r1.addCommand(mc);
+        r2.addCommand(mc1);
+        r2.addCommand(mc1);
+        System.out.println("dovrei eseguire il comando su r1");
+        r1.executeCommand();
+        System.out.println("dovrei eseguire il comando su r2");
+        r2.executeCommand();
+        System.out.println("dovrei eseguire il comando su r1");
+        r1.executeCommand();
+        System.out.println("dovrei eseguire il comando su r2");
+        r2.executeCommand();
+    }
 
 }

@@ -33,9 +33,10 @@ public class MoveCommand implements ICommand {
     }
     @Override
     public void execute() {
+        System.out.println(x+ " "+ y);
         robot.move(x,y,speed);
         isExecuted=true;
-        System.out.println("sto eseguendo Move");
+        System.out.println("sto eseguendo Move "+ robot.getPosition()+ " con target " + robot.getTarget());
     }
 
     @Override

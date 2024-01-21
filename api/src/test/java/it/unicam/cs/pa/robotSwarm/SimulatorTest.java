@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class SimulatorTest {
     @Test
     public void testCreateRobots() {
-        Simulator sim = new Simulator(5);
+        Simulator sim = new Simulator(2);
         sim.simulate(1,10);
     }
 }

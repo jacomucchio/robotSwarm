@@ -20,11 +20,15 @@ public class Simulator implements ISimulator{
     @Override
     public void simulate(double dt, double time) {
         setupSimulation();
-        System.out.println(environment.getAreas().toString());
+
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
             System.out.println("esecuzione numero: "+currentTime);
+            int n=0; //cancellare
             for (IRobot robot : environment.getRobots()) {
+                System.out.println("!!! il robot numero "+n +" che sta alla posizione "+robot.getPosition() +" sta eseguendo ");
                 robot.executeCommand();
+                System.out.println("!!! la posizione del robot dopo lo spostamento è: "+robot.getPosition());
+                n++;
             }
             // eventualmente aggiorna l'ambiente
         }

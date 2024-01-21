@@ -1,6 +1,7 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
 
+import javax.management.DescriptorRead;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Robot implements IRobot{
     private boolean isShowingCondition;
     private int instructionCounter=0;;
     private List<ICommand> program;
-
+    private double timeForExecution=1;
     public Robot() {
         this.position = new Point(0, 0);
         this.target= new Point(0,0);
@@ -43,7 +44,7 @@ public class Robot implements IRobot{
         double randomX = x1 + Math.random() * (x2 - x1);
         double randomY = y1 + Math.random() * (y2 - y1);
         this.position = new Point(randomX, randomY);
-        this.target = new Point(randomX, randomY);
+        this.target= new Point(0,0);
         this.speed = 0;
         isShowingCondition = false;
         this.program = new ArrayList<>();
@@ -52,23 +53,44 @@ public class Robot implements IRobot{
     public void executeCommand(){
         if(instructionCounter<program.size()) {
             ICommand command = program.get(instructionCounter);
+            command.setReceiver(this);
             command.execute();
             if (command.isExecuted()) {
                 instructionCounter++;
             }
-        }
+        } else System.out.println("esecuzione dei comandi terminata");
     }
     @Override
     public void addCommand(ICommand command){
         this.program.add(command);
     }
 
+    @Override
+    public double getExecutionTime() {
+        return timeForExecution;
+    }
+
+    @Override
+    public void setExecutionTime(double time) {
+        this.timeForExecution=time;
+    }
+
 
     @Override
     public void move(double x, double y, double speed) {
-        //this.target=new Point(x,y);
-        //this.speed=speed;
-        DirectionCalculator direction = new DirectionCalculator(this.getPosition(),new Point(x,y),speed);
+        this.target=new Point(x,y);
+        this.speed=speed;
+        DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
+        this.position= dir.calculateFinalDestination(timeForExecution);
+    }
+    @Override
+    public void continueMove(double seconds) {
+        System.out.println("il target è "+target);
+        System.out.println("secondi di esecuzione sono "+ seconds);
+        DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
+        this.position= dir.calculateFinalDestination(seconds);
+        System.out.println("la posizione del robot dopo continue è: "+this.getPosition());
+
     }
 
     @Override
