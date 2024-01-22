@@ -25,9 +25,8 @@ public class Simulator implements ISimulator{
             System.out.println("esecuzione numero: "+currentTime);
             int n=0; //cancellare
             for (IRobot robot : environment.getRobots()) {
-                System.out.println("!!! il robot numero "+n +" che sta alla posizione "+robot.getPosition() +" sta eseguendo ");
+                System.out.println("!!! il robot numero "+n +" che sta alla posizione "+robot.getPosition() +" sta eseguendo un comando");
                 robot.executeCommand();
-                System.out.println("!!! la posizione del robot dopo lo spostamento è: "+robot.getPosition());
                 n++;
             }
             // eventualmente aggiorna l'ambiente

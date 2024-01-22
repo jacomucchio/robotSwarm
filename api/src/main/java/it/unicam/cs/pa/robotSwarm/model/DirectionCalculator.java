@@ -31,28 +31,5 @@ public class DirectionCalculator {
 
         return new Point(finalX, finalY);
     }
-    /*
-        if (speed == 0) return starting;
-
-        // Calcola la direzione del movimento come differenza tra target e starting
-        double diffX = target.getX() - starting.getX();
-        double diffY = target.getY() - starting.getY();
-
-        // Calcola la magnitudine (lunghezza) del vettore direzione
-        double magnitude = Math.sqrt(diffX * diffX + diffY * diffY);
-
-        // Normalizza il vettore direzione
-        double directionX = (magnitude == 0) ? 0 : diffX / magnitude;
-        double directionY = (magnitude == 0) ? 0 : diffY / magnitude;
-
-        // Calcola la distanza totale basata sulla velocità e sul tempo
-        double distance = speed * timeInSeconds;
-
-        // Calcola il punto finale basato sulla distanza e sulla direzione
-        double finalX = starting.getX() + directionX * distance;
-        double finalY = starting.getY() + directionY * distance;
-
-        return new Point(finalX, finalY);
-        */
 
 }

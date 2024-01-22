@@ -82,32 +82,33 @@ public class Robot implements IRobot{
         this.speed=speed;
         DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
         this.position= dir.calculateFinalDestination(timeForExecution);
+        System.out.println("la mia posizione dopo lo spostamento è "+this.getPosition());
     }
     @Override
     public void continueMove(double seconds) {
-        System.out.println("il target è "+target);
-        System.out.println("secondi di esecuzione sono "+ seconds);
         DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
         this.position= dir.calculateFinalDestination(seconds);
-        System.out.println("la posizione del robot dopo continue è: "+this.getPosition());
-
+        System.out.println("la mia posizione dopo continue è: "+this.getPosition());
     }
 
     @Override
     public void stop() {
         this.speed=0;
         this.target=this.position;
+        System.out.println("la mia posizione dopo stop è: "+this.getPosition());
     }
 
     @Override
     public void signal(ILabel label) {
         this.isShowingCondition=true;
         this.label=label;
+        System.out.println("l'etichetta che sto segnalando è "+this.getLabel());
     }
     @Override
     public void unsignal(ILabel label) {
         if(this.label.equals(label)){
             this.isShowingCondition=false;
+            System.out.println("ho smesso di segnalare la condizione");
         }
     }
 
