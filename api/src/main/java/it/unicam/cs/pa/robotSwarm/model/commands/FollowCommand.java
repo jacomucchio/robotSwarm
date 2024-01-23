@@ -1,37 +1,39 @@
 package it.unicam.cs.pa.robotSwarm.model.commands;
 
 import it.unicam.cs.pa.robotSwarm.model.*;
-
+/**
+ * Represents a command to make the robot follow a target with a specified label.
+ */
 public class FollowCommand implements ICommand, Cloneable{
     private IRobot robot;
     private IEnvironment environment;
-    double dist,speed;
+    double distance,speed;
     Point target;
     ILabel label;
     private boolean isExecuted=false;
     public FollowCommand(IRobot r, IEnvironment e, ILabel label, double dist, double speed) {
         this.robot=r;
         this.environment=e;
-        this.dist=dist;
+        this.distance=dist;
         this.speed=speed;
         this.label=label;
     }
     public FollowCommand(IEnvironment e, ILabel label, double dist, double speed) {
         this.environment=e;
-        this.dist=dist;
+        this.distance=dist;
         this.speed=speed;
         this.label=label;
     }
 
     public FollowCommand(ILabel label, double dist, double speed) {
-        this.dist=dist;
+        this.distance=dist;
         this.speed=speed;
         this.label=label;
     }
 
     @Override
     public void execute() {
-        target=environment.getAveragePositionOfRobotsWithLabel(robot.getPosition(),label,dist);
+        target=environment.getAveragePositionOfRobotsWithLabel(robot.getPosition(),label,distance);
         robot.move(target.getX(), target.getY(), speed);
         isExecuted=true;
         System.out.println("sto eseguendo Follow");
@@ -52,15 +54,9 @@ public class FollowCommand implements ICommand, Cloneable{
         try {
             FollowCommand clonedCommand = (FollowCommand) super.clone();
             clonedCommand.environment = this.environment;
-            // Clona l'ambiente se implementa Cloneable
-            // clonedCommand.environment = this.environment.clone(); // da implementare in IEnvironment
-            // Clona l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
     }
-
 }

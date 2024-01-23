@@ -49,13 +49,13 @@ public class DoForeverCommand implements IIterativeCommands, Cloneable {
 
     @Override
     public void setReceiver(IRobot receiver) {
+        if(receiver==null) throw new NullPointerException("Receiver cannot be null");
         this.robot=receiver;
         for(ICommand cmd: commands)
         {
             cmd.setReceiver(receiver);
         }
     }
-
 
     @Override
     public void resetStatus() {
@@ -71,14 +71,10 @@ public class DoForeverCommand implements IIterativeCommands, Cloneable {
     public DoForeverCommand clone() {
         try {
             DoForeverCommand clonedCommand = (DoForeverCommand) super.clone();
-            // Clona la lista di comandi
             clonedCommand.commands = new ArrayList<>();
             for (ICommand command : this.commands) {
-                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+                clonedCommand.addCommand(command.clone());
             }
-            // Potrebbe essere necessario clonare anche l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);

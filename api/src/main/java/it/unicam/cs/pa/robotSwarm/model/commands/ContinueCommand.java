@@ -1,30 +1,33 @@
 package it.unicam.cs.pa.robotSwarm.model.commands;
-
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
+/**
+ * Represents a command to continue the execution of a robot's movement for a specified duration.
+ */
 public class ContinueCommand implements ICommand,Cloneable {
-    //TODO implementare
     private IRobot robot;
     private double seconds;
     private boolean isExecuted=false;
 
     public ContinueCommand(IRobot robot,double seconds) {
-        if(seconds<0) throw new IllegalArgumentException("seconds must be positive");
+        if(seconds<0) throw new IllegalArgumentException("Seconds must be non-negative");
         this.robot = robot;
         this.seconds=seconds;
     }
     public ContinueCommand(double seconds) {
-        if(seconds<0) throw new IllegalArgumentException("seconds must be positive");
+        if(seconds<0) throw new IllegalArgumentException("Seconds must be non-negative");
         this.seconds=seconds;
     }
-
+    /**
+     * Executes the continue command, allowing the robot to continue movement for the specified duration.
+     *
+     */
     @Override
     public void execute() {
         System.out.println("sto eseguendo continue" +seconds);
         if(seconds<robot.getExecutionTime())
         {
-            System.out.println("fine");
             robot.continueMove(seconds);
             isExecuted=true;
         } else {
