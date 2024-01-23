@@ -9,26 +9,29 @@ public class MoveRandomCommand implements ICommand {
     private double x1,x2,y1,y2;
     private Point randomPosition;
     private boolean isExecuted=false;
-    public MoveRandomCommand(IRobot robot,double x1, double x2,double y1, double y2) {
+    private double speed;
+    public MoveRandomCommand(IRobot robot,double x1, double x2,double y1, double y2, double speed) {
         validateParameters(x1,x2,y1,y2);
         this.robot=robot;
         this.x1=x1;
         this.x2=x2;
         this.y1=y1;
         this.y2=y2;
-        calculateRandomPosition();
+        this.speed=speed;
     }
-    public MoveRandomCommand(double x1, double x2,double y1, double y2) {
+    public MoveRandomCommand(double x1, double x2,double y1, double y2,double speed) {
         validateParameters(x1,x2,y1,y2);
         this.x1=x1;
         this.x2=x2;
         this.y1=y1;
         this.y2=y2;
-        calculateRandomPosition();
+        this.speed=speed;
     }
     @Override
     public void execute() {
-        robot.move(randomPosition.getX(),randomPosition.getY(), robot.getSpeed());
+        calculateRandomPosition();
+        System.out.println("sto muovendo in modo randomico verso "+randomPosition);
+        robot.move(randomPosition.getX(),randomPosition.getY(), speed);
         isExecuted=true;
         System.out.println("sto eseguendo MoveRandom");
     }

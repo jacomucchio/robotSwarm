@@ -78,6 +78,7 @@ public class Robot implements IRobot{
 
     @Override
     public void move(double x, double y, double speed) {
+        System.out.println("il target è "+x+" "+y);
         this.target=new Point(x,y);
         this.speed=speed;
         DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);

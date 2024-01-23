@@ -211,7 +211,7 @@ public final class FollowMeParser {
     }
 
     private void callMoveRandomMethod(FollowMeParserHandler handler, String[] elements) throws FollowMeParserException {
-        if (elements.length == 6) {
+        if (elements.length == 7) {
             handler.moveRandomCommand(toDoubleArray(2,elements));
         } else {
             throwSyntaxErrorException();

@@ -36,6 +36,9 @@ public class UntilCommand implements IIterativeCommands {
     @Override
     public void execute() {
         System.out.println("Sto eseguendo Until");
+        //in caso cancella l'ho messo perchè ziopera tutti i robot condividono lo stesso comando
+        isExecuted=false;
+        //
         if(!checkRobotInsideArea()) {
             commands.get(icounter).execute();
             checkIterationStatus();

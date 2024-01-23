@@ -49,7 +49,7 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     @Override
     public void moveRandomCommand(double[] args) {
-        MoveRandomCommand mrc = new MoveRandomCommand(args[0],args[1],args[2],args[3]);
+        MoveRandomCommand mrc = new MoveRandomCommand(args[0],args[1],args[2],args[3],args[4]);
         if(iterativeInstructions.isEmpty()) {
             parsedCommands.add(mrc);
         } else{

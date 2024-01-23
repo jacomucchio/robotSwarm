@@ -42,18 +42,6 @@ public class RepeatCommand implements IIterativeCommands {
     //TODO aggiungere checkIterationStatus() all'interfaccia IIterativeCommands
     public void checkIterationStatus() {
         /*
-        if(commands.get(icounter) instanceof RepeatCommand rp)
-        {
-            System.out.println("sto controllando");
-            if(!rp.isExecuted){
-                System.out.println("Deve finire l'iterazione");
-                return;
-            } else{
-                rp.resetStatus();
-            }
-        }
-        */
-        /*
         Controllo se il comando che è stato eseguito è un comando iterativo
         In caso affermativo se quel comando non ha completato l'esecuzione
         della lista di comandi che deve eseguire non viene incrementato il contatore
