@@ -8,7 +8,7 @@ import it.unicam.cs.pa.robotSwarm.model.IRobot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UntilCommand implements IIterativeCommands {
+public class UntilCommand implements IIterativeCommands,Cloneable {
     private IRobot robot;
     private ILabel label;
     private IEnvironment environment;
@@ -30,6 +30,10 @@ public class UntilCommand implements IIterativeCommands {
     public UntilCommand(ILabel label, IEnvironment environment) {
         this.label = label;
         this.environment = environment;
+        this.commands = new ArrayList<>();
+    }
+    public UntilCommand(ILabel label) {
+        this.label = label;
         this.commands = new ArrayList<>();
     }
 
@@ -85,5 +89,24 @@ public class UntilCommand implements IIterativeCommands {
     public void addCommand(ICommand command)
     {
         this.commands.add(command);
+    }
+    @Override
+    public UntilCommand clone() {
+        try {
+            UntilCommand clonedCommand = (UntilCommand) super.clone();
+            System.out.println("sono riuscito a clonare until");
+            // Clona l'IRobot se implementa Cloneable
+            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
+
+            // Clona la lista di comandi
+            clonedCommand.commands = new ArrayList<>();
+            for (ICommand command : this.commands) {
+                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+            }
+
+            return clonedCommand;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning not supported", e);
+        }
     }
 }

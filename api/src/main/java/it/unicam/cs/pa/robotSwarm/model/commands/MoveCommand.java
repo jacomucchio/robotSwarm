@@ -3,7 +3,7 @@ package it.unicam.cs.pa.robotSwarm.model.commands;
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
-public class MoveCommand implements ICommand {
+public class MoveCommand implements ICommand,Cloneable{
     private IRobot robot;
     private double x, y, speed;
 
@@ -33,6 +33,7 @@ public class MoveCommand implements ICommand {
     }
     @Override
     public void execute() {
+        System.out.println("sto eseguendo move");
         robot.move(x,y,speed);
         isExecuted=true;
     }
@@ -48,4 +49,14 @@ public class MoveCommand implements ICommand {
     }
 
 
+    @Override
+    public MoveCommand clone() {
+        try {
+            MoveCommand clone = (MoveCommand) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

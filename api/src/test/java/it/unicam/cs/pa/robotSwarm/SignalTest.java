@@ -26,4 +26,13 @@ public class SignalTest {
         sc.execute();
         assertTrue(sc.isExecuted());
     }
+    @Test
+    public void testClone(){
+        Robot r1 = new Robot();
+        SignalCommand sc = new SignalCommand(r1,new BasicLabel("_A"));
+        SignalCommand scCloned = sc.clone();
+        scCloned.setReceiver(r1);
+        scCloned.execute();
+        assertTrue(scCloned.isExecuted());
+    }
 }

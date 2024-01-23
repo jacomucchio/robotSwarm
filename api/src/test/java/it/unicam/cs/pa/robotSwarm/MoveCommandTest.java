@@ -55,4 +55,16 @@ public class MoveCommandTest {
         r2.executeCommand();
     }
 
+    @Test
+    public void testClone(){
+        Robot r1 = new Robot(new Point(0,0));
+        MoveCommand mc = new MoveCommand(1,0,5);
+        MoveCommand mc2 = mc.clone();
+        mc2.setReceiver(r1);
+        r1.addCommand(mc2);
+        System.out.println("dovrei eseguire il comando su r1");
+        r1.executeCommand();
+
+    }
+
 }

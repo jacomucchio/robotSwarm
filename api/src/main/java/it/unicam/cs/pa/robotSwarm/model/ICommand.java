@@ -23,4 +23,5 @@ public interface ICommand {
      * @param receiver The {@code IRobot} that will receive and execute the command.
      */
     void setReceiver(IRobot receiver);
+    ICommand clone();
 }

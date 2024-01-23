@@ -7,7 +7,7 @@ import it.unicam.cs.pa.robotSwarm.model.Robot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepeatCommand implements IIterativeCommands {
+public class RepeatCommand implements IIterativeCommands,Cloneable {
     private IRobot robot;
     private boolean isExecuted=false;
     private int iterations; //contatore iterazione
@@ -17,6 +17,11 @@ public class RepeatCommand implements IIterativeCommands {
 
     public RepeatCommand(IRobot robot, int i, List<ICommand> commands) {
         this.robot = robot;
+        this.iterations=i;
+        this.commands=commands;
+        this.repetitions=i;
+    }
+    public RepeatCommand(int i, List<ICommand> commands) {
         this.iterations=i;
         this.commands=commands;
         this.repetitions=i;
@@ -95,5 +100,22 @@ public class RepeatCommand implements IIterativeCommands {
         this.icounter=0;
         this.iterations=repetitions;
         this.isExecuted=false;
+    }
+    @Override
+    public RepeatCommand clone() {
+        try {
+            RepeatCommand clonedCommand = (RepeatCommand) super.clone();
+            // Clona la lista di comandi
+            clonedCommand.commands = new ArrayList<>();
+            for (ICommand command : this.commands) {
+                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+            }
+            // Potrebbe essere necessario clonare anche l'IRobot se implementa Cloneable
+            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
+
+            return clonedCommand;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning not supported", e);
+        }
     }
 }

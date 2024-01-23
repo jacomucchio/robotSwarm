@@ -31,24 +31,35 @@ public class RepeatTest {
         r1.addCommand(cm2);
         r1.addCommand(cm3);
         r1.addCommand(cm4);
-        /*
-        r1.addCommand(cm2);
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+    }
+    @Test
+    public void testCloneRepeat() {
+        Robot r1 = new Robot();
+        MoveCommand cm1 = new MoveCommand(1,1,5);
+        StopCommand cm2 = new StopCommand();
+        List<ICommand> cmdToRepeat = new ArrayList<>();
+        cmdToRepeat.add(cm1);
+        cmdToRepeat.add(cm2);
 
-        r1.addCommand(cm3);
-        r1.addCommand(cm4);
-        for(int i=0;i<5;i++) {
-            r1.executeCommand();
-        }
+        RepeatCommand cm3 = new RepeatCommand( 2, cmdToRepeat);
 
-         */
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
+        RepeatCommand cmcloned= cm3.clone();
+        cmcloned.setReceiver(r1);
+        r1.addCommand(cmcloned);
 
-
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
+        r1.executeCommand();
     }
 }

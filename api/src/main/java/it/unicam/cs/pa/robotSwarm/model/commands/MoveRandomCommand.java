@@ -4,7 +4,7 @@ import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 import it.unicam.cs.pa.robotSwarm.model.Point;
 
-public class MoveRandomCommand implements ICommand {
+public class MoveRandomCommand implements ICommand, Cloneable{
     private IRobot robot;
     private double x1,x2,y1,y2;
     private Point randomPosition;
@@ -55,5 +55,17 @@ public class MoveRandomCommand implements ICommand {
         double randomX = x1 + Math.random() * (x2 - x1);
         double randomY = y1 + Math.random() * (y2 - y1);
         randomPosition = new Point(randomX, randomY);
+    }
+    @Override
+    public MoveRandomCommand clone() {
+        try {
+            MoveRandomCommand clonedCommand = (MoveRandomCommand) super.clone();
+            // Clona l'IRobot se implementa Cloneable
+            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
+
+            return clonedCommand;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning not supported", e);
+        }
     }
 }

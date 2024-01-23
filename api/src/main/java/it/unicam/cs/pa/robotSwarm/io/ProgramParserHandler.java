@@ -30,9 +30,8 @@ public class ProgramParserHandler implements FollowMeParserHandler {
         System.out.println("Parsing Completato");
         for(IRobot r:environment.getRobots())
         {
-            System.out.println("il comando parsato è stato assegnato al robot alla posizione "+r.getPosition());
             for(ICommand command: parsedCommands){
-                r.addCommand(command);
+                r.addCommand(command.clone());
             }
         }
     }
@@ -123,6 +122,7 @@ public class ProgramParserHandler implements FollowMeParserHandler {
     public void untilCommandStart(String label) {
         //TODO implementare
         iterativeInstructions.add(new UntilCommand(new BasicLabel(label),environment));
+
     }
 
     @Override

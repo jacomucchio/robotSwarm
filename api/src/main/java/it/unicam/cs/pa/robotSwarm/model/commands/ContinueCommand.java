@@ -3,7 +3,7 @@ package it.unicam.cs.pa.robotSwarm.model.commands;
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
 
-public class ContinueCommand implements ICommand {
+public class ContinueCommand implements ICommand,Cloneable {
     //TODO implementare
     private IRobot robot;
     private double seconds;
@@ -42,4 +42,14 @@ public class ContinueCommand implements ICommand {
     public void setReceiver(IRobot receiver) {
         this.robot=receiver;
     }
+
+    @Override
+    public ContinueCommand clone() {
+        try {
+            return (ContinueCommand) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning not supported", e);
+        }
+    }
+
 }

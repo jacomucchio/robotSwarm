@@ -6,7 +6,7 @@ import it.unicam.cs.pa.robotSwarm.model.IRobot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoForeverCommand implements IIterativeCommands {
+public class DoForeverCommand implements IIterativeCommands, Cloneable {
     private IRobot robot;
     private List<ICommand> commands;
     private int icounter;
@@ -65,6 +65,24 @@ public class DoForeverCommand implements IIterativeCommands {
     @Override
     public void addCommand(ICommand c) {
         commands.add(c);
+    }
+
+    @Override
+    public DoForeverCommand clone() {
+        try {
+            DoForeverCommand clonedCommand = (DoForeverCommand) super.clone();
+            // Clona la lista di comandi
+            clonedCommand.commands = new ArrayList<>();
+            for (ICommand command : this.commands) {
+                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+            }
+            // Potrebbe essere necessario clonare anche l'IRobot se implementa Cloneable
+            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
+
+            return clonedCommand;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning not supported", e);
+        }
     }
 
 
