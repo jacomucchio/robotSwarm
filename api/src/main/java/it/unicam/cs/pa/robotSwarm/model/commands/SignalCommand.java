@@ -36,9 +36,6 @@ public class SignalCommand implements ICommand,Cloneable {
     public SignalCommand clone() {
         try {
             SignalCommand clonedCommand = (SignalCommand) super.clone();
-            // Clona l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);

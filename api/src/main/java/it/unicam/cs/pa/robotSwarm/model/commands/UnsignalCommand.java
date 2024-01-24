@@ -36,9 +36,6 @@ public class UnsignalCommand implements ICommand,Cloneable {
     public UnsignalCommand clone() {
         try {
             UnsignalCommand clonedCommand = (UnsignalCommand) super.clone();
-            // Clona l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);

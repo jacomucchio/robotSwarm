@@ -44,7 +44,6 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
         commands.get(icounter).execute();
         checkIterationStatus();
     }
-    //TODO aggiungere checkIterationStatus() all'interfaccia IIterativeCommands
     public void checkIterationStatus() {
         /*
         Controllo se il comando che è stato eseguito è un comando iterativo
@@ -90,10 +89,6 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
     {
         return commands;
     }
-    /*
-    TODO metodo che può essere utile per resettare lo stato dei comandi iterativi se
-         devono essere ripetuti
-     */
     @Override
     public void resetStatus()
     {
@@ -105,14 +100,10 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
     public RepeatCommand clone() {
         try {
             RepeatCommand clonedCommand = (RepeatCommand) super.clone();
-            // Clona la lista di comandi
             clonedCommand.commands = new ArrayList<>();
             for (ICommand command : this.commands) {
-                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+                clonedCommand.addCommand(command.clone());
             }
-            // Potrebbe essere necessario clonare anche l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);

@@ -1,33 +1,40 @@
 package it.unicam.cs.pa.robotSwarm.model;
-
+/**
+ * Utility class for calculating final destination based on initial and target points.
+ */
 public class DirectionCalculator {
-    private Point starting;
-    private Point target;
+    private Point initialPoint;
+    private Point targetPoint;
     private double speed;
-    public DirectionCalculator(Point starting, Point target, double speed) {
-        if (starting == null || target == null) {
-            throw new IllegalArgumentException("Starting point and target cant be null.");
+    public DirectionCalculator(Point initialPoint, Point targetPoint, double speed) {
+        if (initialPoint == null || targetPoint == null) {
+            throw new IllegalArgumentException("Initial point and target point cannot be null.");
         }
         if (speed < 0) {
-            throw new IllegalArgumentException("Speed cant be negative");
+            throw new IllegalArgumentException("Speed cannot be negative.");
         }
-        this.starting = starting;
-        this.target = target;
-        this.speed=speed;
+        this.initialPoint = initialPoint;
+        this.targetPoint = targetPoint;
+        this.speed = speed;
     }
+
+    /**
+     * Calculates the final destination point based on the speed and time.
+     *
+     * @param timeInSeconds The time duration for movement.
+     * @return The final destination point.
+     */
     public Point calculateFinalDestination(double timeInSeconds) {
 
-        if(speed ==0) return starting;
-        double magnitude = Math.sqrt(target.getX() * target.getX() + target.getY() * target.getY());
-        double directionX = (magnitude == 0) ? 0 : target.getX() / magnitude;
-        double directionY = (magnitude == 0) ? 0 : target.getY() / magnitude;
+        if(speed ==0) return initialPoint;
+        double magnitude = Math.sqrt(targetPoint.getX() * targetPoint.getX() + targetPoint.getY() * targetPoint.getY());
+        double directionX = (magnitude == 0) ? 0 : targetPoint.getX() / magnitude;
+        double directionY = (magnitude == 0) ? 0 : targetPoint.getY() / magnitude;
 
-        // Calcola la distanza totale basata sulla velocità e sul tempo
         double distance = speed * timeInSeconds;
 
-        // Calcola il punto finale basato sulla distanza e sulla direzione
-        double finalX = starting.getX() + directionX * distance;
-        double finalY = starting.getY() + directionY * distance;
+        double finalX = initialPoint.getX() + directionX * distance;
+        double finalY = initialPoint.getY() + directionY * distance;
 
         return new Point(finalX, finalY);
     }

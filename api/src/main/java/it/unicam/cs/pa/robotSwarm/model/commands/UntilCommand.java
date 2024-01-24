@@ -14,7 +14,7 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
     private IEnvironment environment;
     private List<ICommand> commands;
     private boolean isExecuted = false;
-    private int icounter; //contatore istruzioni
+    private int icounter;
 
     public UntilCommand(IRobot robot, ILabel label, IEnvironment environment, List<ICommand> commands) {
         this.robot = robot;
@@ -40,9 +40,6 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
     @Override
     public void execute() {
         System.out.println("Sto eseguendo Until");
-        //in caso cancella l'ho messo perchè ziopera tutti i robot condividono lo stesso comando
-        isExecuted=false;
-        //
         if(!checkRobotInsideArea()) {
             commands.get(icounter).execute();
             checkIterationStatus();
@@ -94,14 +91,9 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
     public UntilCommand clone() {
         try {
             UntilCommand clonedCommand = (UntilCommand) super.clone();
-            System.out.println("sono riuscito a clonare until");
-            // Clona l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
-            // Clona la lista di comandi
             clonedCommand.commands = new ArrayList<>();
             for (ICommand command : this.commands) {
-                clonedCommand.addCommand(command.clone()); // Assicurati che ICommand implementi Cloneable
+                clonedCommand.addCommand(command.clone());
             }
 
             return clonedCommand;

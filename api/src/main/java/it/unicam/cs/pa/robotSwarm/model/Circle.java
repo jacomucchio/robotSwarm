@@ -1,9 +1,23 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
+/**
+ * Implementation of the {@code IArea} interface representing a circular area.
+ */
 public class Circle implements IArea{
+    /** The center coordinates of the circle. */
     private Point center;
+    /** The radius of the circle. */
     private double radius;
+    /** The label associated with the circle. */
     private ILabel label;
+
+    /**
+     * Constructs a Circle with the specified center, radius, and label.
+     *
+     * @param center The center coordinates of the circle.
+     * @param radius The radius of the circle.
+     * @param label The label associated with the circle.
+     */
     public Circle(Point center, double radius, ILabel label){
         this.center=center;
         this.radius=radius;

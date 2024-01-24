@@ -1,8 +1,17 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
 import it.unicam.cs.followme.utilities.ShapeData;
-
+/**
+ * Implementation of the {@code IAreaFactory} interface for creating instances of {@code Circle}.
+ */
 public class CircleFactory implements IAreaFactory{
+
+    /**
+     * Creates a circular area based on the provided {@code ShapeData}.
+     *
+     * @param shapeData The data representing the shape, including center coordinates, radius, and label.
+     * @return A new instance of {@code Circle} created from the provided shape data.
+     */
     @Override
     public IArea createArea(ShapeData shapeData) {
         Point center = new Point(shapeData.args()[0], shapeData.args()[1]);

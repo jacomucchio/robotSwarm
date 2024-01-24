@@ -23,5 +23,10 @@ public interface ICommand {
      * @param receiver The {@code IRobot} that will receive and execute the command.
      */
     void setReceiver(IRobot receiver);
+    /**
+     * Creates and returns a new instance that is a copy of this command.
+     *
+     * @return A new instance that is a copy of this command.
+     */
     ICommand clone();
 }

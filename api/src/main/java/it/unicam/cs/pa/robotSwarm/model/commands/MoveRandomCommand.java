@@ -60,9 +60,6 @@ public class MoveRandomCommand implements ICommand, Cloneable{
     public MoveRandomCommand clone() {
         try {
             MoveRandomCommand clonedCommand = (MoveRandomCommand) super.clone();
-            // Clona l'IRobot se implementa Cloneable
-            // clonedCommand.robot = this.robot.clone(); // da implementare in IRobot
-
             return clonedCommand;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
