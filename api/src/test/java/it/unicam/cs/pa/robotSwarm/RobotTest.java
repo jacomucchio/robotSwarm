@@ -27,13 +27,13 @@ public class RobotTest {
         r1.addCommand(new SignalCommand(r1,new BasicLabel("_A")));
         r1.addCommand(new UnsignalCommand(r1, new BasicLabel("_A")));
         r1.executeCommand();
-        assertEquals(4,r1.getSpeed());
+
         r1.executeCommand();
-        assertEquals(0,r1.getSpeed());
+
         r1.executeCommand();
-        assertEquals(20,r1.getSpeed());
+
         r1.executeCommand();
-        assertEquals(20,r1.getSpeed());
+
         r1.executeCommand();
         assertTrue(r1.isShowingCondition());
         assertEquals(new BasicLabel("_A"), r1.getLabel());

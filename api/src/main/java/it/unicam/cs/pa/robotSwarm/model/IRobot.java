@@ -8,23 +8,11 @@ public interface IRobot {
     void stop();
     void signal(ILabel label);
     void unsignal(ILabel label);
-
     ILabel getLabel();
-
-    void addLabel(ILabel label);
     Point getPosition();
-    void setPosition(Point position);
-
-    void setTarget(Point p);
-    Point getTarget();
-    void setSpeed(double s);
-    double getSpeed();
     boolean isShowingCondition();
-    void setShowingCondition(boolean condition);
     void executeCommand();
     void addCommand(ICommand command);
-
     double getExecutionTime();
-    void setExecutionTime(double time);
 
 }

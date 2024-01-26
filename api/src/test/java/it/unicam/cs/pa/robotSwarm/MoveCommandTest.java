@@ -17,14 +17,7 @@ public class MoveCommandTest {
         assertThrows(IllegalArgumentException.class, () -> new MoveCommand(r,0,2,4));
         assertDoesNotThrow(() -> new MoveCommand(r,0,1,4));
     }
-    @Test
-    public void testMove() {
-        Robot r = new Robot();
-        MoveCommand moveCommand = new MoveCommand(r,1,0,6);
-        moveCommand.execute();
-        assertEquals(6.0,r.getSpeed());
-        assertEquals(new Point(1,0),r.getTarget());
-    }
+
     @Test
     public void testExecutionIsDone(){
         Robot r1 = new Robot();

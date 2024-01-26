@@ -1,7 +1,5 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
-
-import javax.management.DescriptorRead;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,11 +68,6 @@ public class Robot implements IRobot{
         return timeForExecution;
     }
 
-    @Override
-    public void setExecutionTime(double time) {
-        this.timeForExecution=time;
-    }
-
 
     @Override
     public void move(double x, double y, double speed) {
@@ -119,48 +112,13 @@ public class Robot implements IRobot{
     }
 
     @Override
-    public void addLabel(ILabel label) {
-        this.label=label;
-    }
-
-    @Override
     public Point getPosition() {
         return this.position;
     }
 
     @Override
-    public void setPosition(Point position) {
-        this.position=position;
-    }
-
-    @Override
-    public void setTarget(Point p) {
-        this.target=p;
-    }
-
-    @Override
-    public Point getTarget() {
-        return this.target;
-    }
-
-    @Override
-    public void setSpeed(double s) {
-        this.speed=s;
-    }
-
-    @Override
-    public double getSpeed() {
-        return this.speed;
-    }
-
-    @Override
     public boolean isShowingCondition() {
         return isShowingCondition;
-    }
-
-    @Override
-    public void setShowingCondition(boolean condition) {
-        this.isShowingCondition=condition;
     }
 
     @Override

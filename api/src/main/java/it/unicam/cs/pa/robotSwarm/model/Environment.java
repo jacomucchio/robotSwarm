@@ -32,7 +32,6 @@ public class Environment implements IEnvironment{
         this.areas.addAll(areas);
     }
 
-    @Override
     public List<IArea> getAreas() {
         return new ArrayList<>(areas);
     }
@@ -42,12 +41,6 @@ public class Environment implements IEnvironment{
         return new ArrayList<>(robots);
     }
 
-    @Override
-    public List<IRobot> getRobotsByLabel(ILabel label) {
-        return robots.stream()
-                .filter(robot -> robot.getLabel() != null && robot.getLabel().equals(label))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public List<IRobot> getRobotsDisplayingCondition(ILabel label) {
@@ -56,19 +49,7 @@ public class Environment implements IEnvironment{
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<IArea> getAreasByLabel(ILabel l) {
-        return areas.stream()
-                .filter(area -> area.getLabel().equals(l))
-                .collect(Collectors.toList());
-    }
 
-    @Override
-    public List<IArea> getAreasAtPoint(Point point) {
-        return areas.stream()
-                .filter(area -> area.containsPoint(point))
-                .collect(Collectors.toList());
-    }
     @Override
     public List<IArea> getAreasAtPointWithLabel(Point point, ILabel label) {
         return areas.stream()
