@@ -28,8 +28,22 @@ public interface IEnvironment {
      */
     List<IRobot> getRobotsDisplayingCondition(ILabel label);
 
-
+    /**
+     * Returns a list of areas that contain a specific point and have a given label.
+     *
+     * @param point the point to look for within the areas
+     * @param label the label to search for in the areas
+     * @return a list of areas that satisfy the search criteria
+     */
     List<IArea> getAreasAtPointWithLabel(Point point, ILabel label);
 
+    /**
+     * Computes the average position of robots that meet a certain condition within a specified distance from a starting point.
+     *
+     * @param startingPosition the starting position for distance calculation
+     * @param label the label that robots must display to be included in the calculation
+     * @param distance the maximum distance within which to include robots in the calculation
+     * @return the average position of robots that satisfy the specified criteria
+     */
     Point getAveragePositionOfRobotsWithLabel(Point startingPosition, ILabel label, double distance);
 }

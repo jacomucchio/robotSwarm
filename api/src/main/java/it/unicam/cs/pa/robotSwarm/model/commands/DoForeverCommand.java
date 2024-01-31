@@ -2,10 +2,12 @@ package it.unicam.cs.pa.robotSwarm.model.commands;
 
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a command that executes a list of commands in a loop indefinitely.
+ */
 public class DoForeverCommand implements IIterativeCommands, Cloneable {
     private IRobot robot;
     private List<ICommand> commands;
@@ -23,14 +25,18 @@ public class DoForeverCommand implements IIterativeCommands, Cloneable {
         this.commands=new ArrayList<>();
     }
 
+    /**
+     * Executes the command at icounter position
+     */
     @Override
     public void execute() {
-        System.out.println("sto eseguendo DoForever");
         commands.get(icounter).execute();
         checkIterationStatus();
     }
-
-    public void checkIterationStatus() {
+    /**
+     * Checks the status of the current iteration and resets it if needed.
+     */
+    private void checkIterationStatus() {
         if (commands.get(icounter) instanceof IIterativeCommands ic) {
             if(!ic.isExecuted()){
                 return;

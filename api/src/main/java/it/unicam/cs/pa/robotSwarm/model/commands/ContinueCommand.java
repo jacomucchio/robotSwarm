@@ -11,12 +11,12 @@ public class ContinueCommand implements ICommand,Cloneable {
     private boolean isExecuted=false;
 
     public ContinueCommand(IRobot robot,double seconds) {
-        if(seconds<0) throw new IllegalArgumentException("Seconds must be non-negative");
+        validateSeconds(seconds);
         this.robot = robot;
         this.seconds=seconds;
     }
     public ContinueCommand(double seconds) {
-        if(seconds<0) throw new IllegalArgumentException("Seconds must be non-negative");
+        validateSeconds(seconds);
         this.seconds=seconds;
     }
     /**
@@ -60,5 +60,16 @@ public class ContinueCommand implements ICommand,Cloneable {
                 + ", Seconds: " + seconds
                 + ", Executed: " + isExecuted
                 + "]";
+    }
+    /**
+     * Validates that the provided seconds value is non-negative.
+     *
+     * @param seconds The seconds value to validate.
+     * @throws IllegalArgumentException if seconds is negative.
+     */
+    private void validateSeconds(double seconds) {
+        if (seconds < 0) {
+            throw new IllegalArgumentException("Seconds must be non-negative");
+        }
     }
 }

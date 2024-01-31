@@ -2,68 +2,83 @@ package it.unicam.cs.pa.robotSwarm.model.commands;
 
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.IRobot;
-import it.unicam.cs.pa.robotSwarm.model.Robot;
-
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Represents a command to repeat a sequence of commands for a specified number of iterations.
+ */
 public class RepeatCommand implements IIterativeCommands,Cloneable {
     private IRobot robot;
     private boolean isExecuted=false;
-    private int iterations; //contatore iterazione
-    private int icounter; //contatore istruzioni
+    private int iterations;
+    private int instructionCounter;
     private List<ICommand> commands;
     private int repetitions;
 
-    public RepeatCommand(IRobot robot, int i, List<ICommand> commands) {
+    /**
+     * Constructs a RepeatCommand for a specific robot with a specified number of iterations and a list of commands to repeat.
+     *
+     * @param robot    The robot on which the commands should be executed.
+     * @param iterations The number of iterations to repeat the commands.
+     * @param commands  The list of commands to repeat.
+     */
+    public RepeatCommand(IRobot robot, int iterations, List<ICommand> commands) {
         this.robot = robot;
-        this.iterations=i;
+        this.iterations=iterations;
         this.commands=commands;
-        this.repetitions=i;
-    }
-    public RepeatCommand(int i, List<ICommand> commands) {
-        this.iterations=i;
-        this.commands=commands;
-        this.repetitions=i;
+        this.repetitions=iterations;
     }
 
-    public RepeatCommand(IRobot robot, int i) {
-        this.robot = robot;
-        this.iterations=i;
-        this.commands=new ArrayList<>();
-        this.repetitions=i;
+    /**
+     * Constructs a RepeatCommand with a specified number of iterations and a list of commands to repeat.
+     * The robot must be set separately.
+     *
+     * @param iterations The number of iterations to repeat the commands.
+     * @param commands   The list of commands to repeat.
+     */
+    public RepeatCommand(int iterations, List<ICommand> commands) {
+        this.iterations=iterations;
+        this.commands=commands;
+        this.repetitions=iterations;
     }
-    public RepeatCommand(int i) {
-        this.iterations=i;
+
+    /**
+     * Constructs a RepeatCommand for a specific robot with a specified number of iterations.
+     *
+     * @param iterations The number of iterations to repeat the commands.
+     */
+    public RepeatCommand(int iterations) {
+        this.iterations=iterations;
         this.commands=new ArrayList<>();
-        this.repetitions=i;
+        this.repetitions=iterations;
     }
     @Override
     public void execute() {
-        commands.get(icounter).execute();
+        commands.get(instructionCounter).execute();
         checkIterationStatus();
     }
+
+
+    /**
+     * Checks the iteration status and continues the execution of the sequence of commands.
+     * This method verifies if the currently executed command is an iterative command.
+     * If it is, and the command has not completed the execution of the list of commands it must execute,
+     * the counter is not incremented. This ensures the continued execution of the command until
+     * it completes its execution.
+     */
     public void checkIterationStatus() {
-        /*
-        Controllo se il comando che è stato eseguito è un comando iterativo
-        In caso affermativo se quel comando non ha completato l'esecuzione
-        della lista di comandi che deve eseguire non viene incrementato il contatore
-        delle istruzioni in modo tale da continuare ad esguire il comando finchè non
-        ha completato l'esecuzione
-         */
-        if (commands.get(icounter) instanceof IIterativeCommands ic) {
+        if (commands.get(instructionCounter) instanceof IIterativeCommands ic) {
             if(!ic.isExecuted()){
                 return;
             } else ic.resetStatus();
         }
-
-        if(icounter==commands.size()-1){
+        if(instructionCounter==commands.size()-1){
             if(iterations>1){
                 iterations--;
-                icounter=0;
+                instructionCounter=0;
             }
             else isExecuted=true;
-        } else icounter++;
+        } else instructionCounter++;
     }
 
     @Override
@@ -71,6 +86,11 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
         return isExecuted;
     }
 
+    /**
+     * Sets the receiver (robot) for each command in the list.
+     *
+     * @param receiver The robot to which the command should be applied.
+     */
     @Override
     public void setReceiver(IRobot receiver) {
         this.robot=receiver;
@@ -79,19 +99,25 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
             cmd.setReceiver(receiver);
         }
     }
+
+    /**
+     * Adds a command to the list of commands to repeat.
+     *
+     * @param command The command to add to the list.
+     */
     @Override
     public void addCommand(ICommand command)
     {
         this.commands.add(command);
     }
-    public List<ICommand> getCommandList()
-    {
-        return commands;
-    }
+
+    /**
+     * Resets the status of the repeat command, allowing it to be executed again.
+     */
     @Override
     public void resetStatus()
     {
-        this.icounter=0;
+        this.instructionCounter=0;
         this.iterations=repetitions;
         this.isExecuted=false;
     }
@@ -113,7 +139,7 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
     public String toString() {
         return "RepeatCommand [" +
                 ", Iterations: " + iterations +
-                ", Iteration Counter: " + icounter +
+                ", Iteration Counter: " + instructionCounter +
                 ", Repetitions: " + repetitions +
                 ", Commands: " + commands +
                 ", Executed: " + isExecuted +

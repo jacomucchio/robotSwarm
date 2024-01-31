@@ -3,7 +3,6 @@ package it.unicam.cs.pa.robotSwarm.io;
 import it.unicam.cs.followme.utilities.FollowMeParserHandler;
 import it.unicam.cs.pa.robotSwarm.model.*;
 import it.unicam.cs.pa.robotSwarm.model.commands.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,21 +12,28 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     private List<IIterativeCommands> iterativeInstructions;
 
+
+    /**
+     * Constructs a new ProgramParserHandler with the given environment.
+     *
+     * @param environment The environment in which the parsed commands will be executed.
+     */
     public ProgramParserHandler(IEnvironment environment) {
         this.environment=environment;
         this.iterativeInstructions=new ArrayList<>();
         this.parsedCommands=new ArrayList<>();
-
     }
 
     @Override
     public void parsingStarted() {
-        System.out.println("Parsing Iniziato");
+
     }
 
+    /**
+     * Called when the parsing process is done. Adds parsed commands to robots in the environment.
+     */
     @Override
     public void parsingDone() {
-        System.out.println("Parsing Completato");
         for(IRobot r:environment.getRobots())
         {
             for(ICommand command: parsedCommands){
@@ -78,13 +84,12 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     @Override
     public void followCommand(String label, double[] args) {
-        FollowCommand fc = new FollowCommand(environment, new BasicLabel(label),args[0],args[1]);
-        if(iterativeInstructions.isEmpty()) {
+        FollowCommand fc = new FollowCommand(environment, new BasicLabel(label), args[0], args[1]);
+        if (iterativeInstructions.isEmpty()) {
             parsedCommands.add(fc);
-        } else{
-            iterativeInstructions.get(iterativeInstructions.size()-1).addCommand(fc);
+        } else {
+            iterativeInstructions.get(iterativeInstructions.size() - 1).addCommand(fc);
         }
-
     }
 
     @Override
@@ -109,31 +114,26 @@ public class ProgramParserHandler implements FollowMeParserHandler {
 
     @Override
     public void repeatCommandStart(int n) {
-        /*
-        TODO modificare in modo tale che venga creato un comando generico
-             e non specifico per ogni robot
-         */
         iterativeInstructions.add(new RepeatCommand(n));
-
-
     }
 
     @Override
     public void untilCommandStart(String label) {
-        //TODO implementare
         iterativeInstructions.add(new UntilCommand(new BasicLabel(label),environment));
-
     }
 
     @Override
     public void doForeverStart() {
-        //TODO implementare
         iterativeInstructions.add(new DoForeverCommand());
     }
-
+    /**
+     * Handles the completion of an iterative command block. If there are more than one
+     * iterative command blocks in the stack, it adds the current block to the previous one.
+     * If there is only one block, it adds the block's command to the list of parsed commands.
+     * Clears the iterative command block from the stack.
+     */
     @Override
     public void doneCommand() {
-
         if(iterativeInstructions.size()>1)
         {
             iterativeInstructions.get(iterativeInstructions.size()-2).
@@ -148,5 +148,4 @@ public class ProgramParserHandler implements FollowMeParserHandler {
     public IEnvironment getEnvironment(){
         return environment;
     }
-
 }

@@ -41,8 +41,8 @@ public class Circle implements IArea{
     }
     @Override
     public String toString() {
-        return "[Cerchio con label : "+getLabel()+
-                "\n alla posizione: "+getCenter()+
-                "\n con raggio: "+getRadius()+ "]\n";
+        return "[Circle with label : "+getLabel()+
+                "\n at position: "+getCenter()+
+                "\n with radius: "+getRadius()+ "]\n";
     }
 }
