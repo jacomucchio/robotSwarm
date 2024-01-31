@@ -15,7 +15,6 @@ public class StopCommand implements ICommand, Cloneable {
     public void execute() {
         robot.stop();
         isExecuted=true;
-        System.out.println("sto eseguendo Stop");
     }
 
     @Override
@@ -35,6 +34,12 @@ public class StopCommand implements ICommand, Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+    @Override
+    public String toString() {
+        return "StopCommand [" +
+                ", Executed: " + isExecuted +
+                "]";
     }
 
 }

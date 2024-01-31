@@ -1,7 +1,5 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
-import java.util.Set;
-
 public interface IRobot {
     void move(double x, double y, double speed);
     void continueMove(double seconds);

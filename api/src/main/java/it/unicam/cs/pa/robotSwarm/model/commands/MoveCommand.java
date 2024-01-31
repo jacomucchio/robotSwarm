@@ -33,7 +33,6 @@ public class MoveCommand implements ICommand,Cloneable{
     }
     @Override
     public void execute() {
-        System.out.println("sto eseguendo move");
         robot.move(x,y,speed);
         isExecuted=true;
     }
@@ -57,5 +56,14 @@ public class MoveCommand implements ICommand,Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+    @Override
+    public String toString() {
+        return "MoveCommand ["
+                + ", X: " + x
+                + ", Y: " + y
+                + ", Speed: " + speed
+                + ", Executed: " + isExecuted
+                + "]";
     }
 }

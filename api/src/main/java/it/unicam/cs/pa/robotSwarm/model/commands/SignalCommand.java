@@ -20,7 +20,6 @@ public class SignalCommand implements ICommand,Cloneable {
     public void execute() {
         robot.signal(label);
         isExecuted=true;
-        System.out.println("sto eseguendo Signal");
     }
 
     @Override
@@ -40,5 +39,12 @@ public class SignalCommand implements ICommand,Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+    @Override
+    public String toString() {
+        return "SignalCommand [" +
+                ", Label: " + label +
+                ", Executed: " + isExecuted +
+                "]";
     }
 }

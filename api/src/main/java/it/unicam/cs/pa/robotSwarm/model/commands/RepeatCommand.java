@@ -40,7 +40,6 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
     }
     @Override
     public void execute() {
-        //System.out.println("sto eseguendo Repeat");
         commands.get(icounter).execute();
         checkIterationStatus();
     }
@@ -108,5 +107,16 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "RepeatCommand [" +
+                ", Iterations: " + iterations +
+                ", Iteration Counter: " + icounter +
+                ", Repetitions: " + repetitions +
+                ", Commands: " + commands +
+                ", Executed: " + isExecuted +
+                "]";
     }
 }

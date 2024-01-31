@@ -56,7 +56,7 @@ public class Robot implements IRobot{
             if (command.isExecuted()) {
                 instructionCounter++;
             }
-        } else System.out.println("esecuzione dei comandi terminata");
+        }
     }
     @Override
     public void addCommand(ICommand command){
@@ -71,38 +71,32 @@ public class Robot implements IRobot{
 
     @Override
     public void move(double x, double y, double speed) {
-        System.out.println("il target è "+x+" "+y);
         this.target=new Point(x,y);
         this.speed=speed;
         DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
         this.position= dir.calculateFinalDestination(timeForExecution);
-        System.out.println("la mia posizione dopo lo spostamento è "+this.getPosition());
     }
     @Override
     public void continueMove(double seconds) {
         DirectionCalculator dir = new DirectionCalculator(this.position,this.target,this.speed);
         this.position= dir.calculateFinalDestination(seconds);
-        System.out.println("la mia posizione dopo continue è: "+this.getPosition());
     }
 
     @Override
     public void stop() {
         this.speed=0;
         this.target=this.position;
-        System.out.println("la mia posizione dopo stop è: "+this.getPosition());
     }
 
     @Override
     public void signal(ILabel label) {
         this.isShowingCondition=true;
         this.label=label;
-        System.out.println("l'etichetta che sto segnalando è "+this.getLabel());
     }
     @Override
     public void unsignal(ILabel label) {
         if(this.label.equals(label)){
             this.isShowingCondition=false;
-            System.out.println("ho smesso di segnalare la condizione");
         }
     }
 
@@ -123,9 +117,22 @@ public class Robot implements IRobot{
 
     @Override
     public String toString() {
-        return "[Robot alla posizione: "+position+
-                "\n con target: "+target+
-                "\n con velocita: "+speed+
-                "\n con label: "+label+"]\n";
+        StringBuilder builder = new StringBuilder();
+        builder.append("Robot [");
+        builder.append("Position: ").append(position);
+        builder.append(", Label: ").append(label);
+        builder.append(", Target: ").append(target);
+        builder.append(", Speed: ").append(speed);
+        builder.append(", Showing Condition: ").append(isShowingCondition);
+        builder.append("]");
+
+        if (instructionCounter < program.size()) {
+            ICommand currentCommand = program.get(instructionCounter);
+            builder.append("\nExecuting Command: ").append(currentCommand);
+        } else {
+            builder.append("\nCommand execution completed.");
+        }
+
+        return builder.toString();
     }
 }

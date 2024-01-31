@@ -36,7 +36,6 @@ public class FollowCommand implements ICommand, Cloneable{
         target=environment.getAveragePositionOfRobotsWithLabel(robot.getPosition(),label,distance);
         robot.move(target.getX(), target.getY(), speed);
         isExecuted=true;
-        System.out.println("sto eseguendo Follow");
     }
 
     @Override
@@ -58,5 +57,15 @@ public class FollowCommand implements ICommand, Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+    @Override
+    public String toString() {
+        return "FollowCommand ["
+                + ", Distance: " + distance
+                + ", Speed: " + speed
+                + ", Target: " + target
+                + ", Label: " + label
+                + ", Executed: " + isExecuted
+                + "]";
     }
 }

@@ -39,7 +39,6 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
 
     @Override
     public void execute() {
-        System.out.println("Sto eseguendo Until");
         if(!checkRobotInsideArea()) {
             commands.get(icounter).execute();
             checkIterationStatus();
@@ -100,5 +99,14 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+    @Override
+    public String toString() {
+        return "UntilCommand [" +
+                "Robot: " + robot +
+                ", Label: " + label +
+                ", Executed: " + isExecuted +
+                ", Iteration Counter: " + icounter +
+                "]";
     }
 }

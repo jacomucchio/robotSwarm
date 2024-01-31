@@ -20,7 +20,6 @@ public class UnsignalCommand implements ICommand,Cloneable {
     public void execute() {
         robot.unsignal(label);
         isExecuted=true;
-        System.out.println("sto eseguendo Unsignal");
     }
 
     @Override
@@ -40,5 +39,13 @@ public class UnsignalCommand implements ICommand,Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+    @Override
+    public String toString() {
+        return  "UnsignalCommand [" +
+                "Robot: " + robot +
+                ", Label: " + label +
+                ", Executed: " + isExecuted +
+                "]";
     }
 }

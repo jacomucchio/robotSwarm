@@ -30,10 +30,8 @@ public class MoveRandomCommand implements ICommand, Cloneable{
     @Override
     public void execute() {
         calculateRandomPosition();
-        System.out.println("sto muovendo in modo randomico verso "+randomPosition);
         robot.move(randomPosition.getX(),randomPosition.getY(), speed);
         isExecuted=true;
-        System.out.println("sto eseguendo MoveRandom");
     }
 
     @Override
@@ -48,7 +46,7 @@ public class MoveRandomCommand implements ICommand, Cloneable{
 
     public void validateParameters(double x1, double x2, double y1,double y2 ){
         if ((x1 < -1 || x1 > 1) || (x2 < -1 || x2 > 1)|| (y1 < -1 || y1 > 1)|| (y2 < -1 || y2 > 1)) {
-            throw new IllegalArgumentException("x e y devono essere compresi tra -1 e 1");
+            throw new IllegalArgumentException("x e y must be within tra -1 e 1");
         }
     }
     public void calculateRandomPosition(){
@@ -64,5 +62,18 @@ public class MoveRandomCommand implements ICommand, Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cloning not supported", e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MoveRandomCommand ["
+                + ", X1: " + x1
+                + ", X2: " + x2
+                + ", Y1: " + y1
+                + ", Y2: " + y2
+                + ", Random Position: " + randomPosition
+                + ", Speed: " + speed
+                + ", Executed: " + isExecuted
+                + "]";
     }
 }

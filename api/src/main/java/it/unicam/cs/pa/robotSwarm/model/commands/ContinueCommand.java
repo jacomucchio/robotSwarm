@@ -25,7 +25,6 @@ public class ContinueCommand implements ICommand,Cloneable {
      */
     @Override
     public void execute() {
-        System.out.println("sto eseguendo continue" +seconds);
         if(seconds<robot.getExecutionTime())
         {
             robot.continueMove(seconds);
@@ -55,4 +54,11 @@ public class ContinueCommand implements ICommand,Cloneable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "ContinueCommand ["
+                + ", Seconds: " + seconds
+                + ", Executed: " + isExecuted
+                + "]";
+    }
 }
