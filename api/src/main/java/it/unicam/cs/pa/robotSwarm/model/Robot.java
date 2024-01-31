@@ -1,5 +1,7 @@
 package it.unicam.cs.pa.robotSwarm.model;
 
+import it.unicam.cs.pa.robotSwarm.utils.DirectionCalculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,6 +170,10 @@ public class Robot implements IRobot{
     @Override
     public Point getPosition() {
         return this.position;
+    }
+
+    public double getSpeed() {
+        return this.speed;
     }
     /**
      * Checks if the robot is currently showing a condition.

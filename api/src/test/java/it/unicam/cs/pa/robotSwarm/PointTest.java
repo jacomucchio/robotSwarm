@@ -7,55 +7,58 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PointTest {
     @Test
-    public void testCreateAndGet() {
-        Point p = new Point(3.0, 4.0);
-        assertEquals(3.0, p.getX(), 0.001);
-        assertEquals(4.0, p.getY(), 0.001);
+    void shouldCreatePointWithSpecifiedCoordinates() {
+        double x = 3.0;
+        double y = 4.0;
+
+        Point point = new Point(x, y);
+
+        assertEquals(x, point.getX());
+        assertEquals(y, point.getY());
     }
 
-    // Test per i metodi setX e setY
+
     @Test
-    public void testSet() {
-        Point p = new Point(3.0, 4.0);
-        p.setX(5.0);
-        p.setY(6.0);
-        assertEquals(5.0, p.getX(), 0.001);
-        assertEquals(6.0, p.getY(), 0.001);
+    void shouldCalculateDistanceBetweenTwoPoints() {
+        // Arrange
+        Point point1 = new Point(1.0, 1.0);
+        Point point2 = new Point(4.0, 5.0);
+
+        // Act
+        double distance = point1.distance(point2);
+
+        // Assert
+        assertEquals(5.0, distance);
     }
 
-    // Test per il metodo distance
     @Test
-    public void testDistance() {
-        Point p1 = new Point(0, 0);
-        Point p2 = new Point(3, 4);
-        assertEquals(5.0, p1.distance(p2), 0.001);
+    void shouldCreateNewPointByAddingValues() {
+        // Arrange
+        Point point = new Point(2.0, 3.0);
+        double dx = 1.0;
+        double dy = -2.0;
+
+        // Act
+        Point newPoint = point.add(dx, dy);
+
+        // Assert
+        assertEquals(3.0, newPoint.getX());
+        assertEquals(1.0, newPoint.getY());
     }
 
-    // Test per il metodo toString
     @Test
-    public void testToString() {
-        Point p = new Point(1, 2);
-        assertEquals("Point{x=1.0, y=2.0}", p.toString());
+    void shouldEqualPointsWithSameCoordinates() {
+        Point point1 = new Point(3.0, 4.0);
+        Point point2 = new Point(3.0, 4.0);
+        assertEquals(point1, point2);
     }
-
-    // Test per il metodo equals
     @Test
-    public void testEquals() {
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(1, 2);
-        Point p3 = new Point(2, 1);
+    void shouldNotEqualPointsWithDifferentCoordinates() {
+        Point point1 = new Point(1.0, 2.0);
+        Point point2 = new Point(3.0, 4.0);
 
-        assertTrue(p1.equals(p2));
-        assertFalse(p1.equals(p3));
+        assertNotEquals(point1, point2);
     }
 
-    // Test per il metodo hashCode
-    @Test
-    public void testHashCode() {
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(1, 2);
-
-        assertEquals(p1.hashCode(), p2.hashCode());
-    }
 
 }

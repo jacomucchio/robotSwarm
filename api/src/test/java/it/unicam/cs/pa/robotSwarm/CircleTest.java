@@ -11,39 +11,37 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CircleTest {
-    private Circle circle;
-    private Point center;
-    private double radius;
-    private ILabel label;
-
-    @BeforeEach
-    public void setUp() {
-        center = new Point(1, 1);
-        radius = 5.0;
-        label=new BasicLabel("_A");
-        circle = new Circle(center, radius, label);
-    }
-
     @Test
-    public void testConstructor() {
+    void shouldCreateCircleWithValidParameters() {
+        Point center = new Point(0, 0);
+        double radius = 5.0;
+        ILabel label = new BasicLabel("_CircleLabel");
+
+        Circle circle = new Circle(center, radius, label);
+
         assertEquals(center, circle.getCenter());
-        assertEquals(radius, circle.getRadius(), 0.01);
+        assertEquals(radius, circle.getRadius());
         assertEquals(label, circle.getLabel());
     }
 
     @Test
-    public void testContainsPoint() {
-        Point insidePoint = new Point(3, 3);
-        assertTrue(circle.containsPoint(insidePoint));
+    void shouldContainPointInsideCircle() {
+        Point center = new Point(0, 0);
+        double radius = 5.0;
+        ILabel label = new BasicLabel("_CircleLabel");
+        Circle circle = new Circle(center, radius, label);
 
-        Point outsidePoint = new Point(10, 10);
-        assertFalse(circle.containsPoint(outsidePoint));
+        assertTrue(circle.containsPoint(new Point(3, 4)));
     }
 
     @Test
-    public void testGetters() {
-        assertEquals(center, circle.getCenter());
-        assertEquals(radius, circle.getRadius(), 0.01);
-        assertEquals(label, circle.getLabel());
+    void shouldNotContainPointOutsideCircle() {
+        Point center = new Point(0, 0);
+        double radius = 5.0;
+        ILabel label = new BasicLabel("_CircleLabel");
+        Circle circle = new Circle(center, radius, label);
+
+        assertFalse(circle.containsPoint(new Point(8, 8)));
     }
+
 }

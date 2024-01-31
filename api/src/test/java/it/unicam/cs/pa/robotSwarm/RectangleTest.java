@@ -11,23 +11,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangleTest {
-    private Rectangle rectangle;
-    private ILabel label;
-    private Point center;
-    private double width;
-    private double height;
-
-    @BeforeEach
-    public void setUp() {
-        label=new BasicLabel("_A");
-        center = new Point(5, 5);
-        width = 10;
-        height = 6;
-        rectangle = new Rectangle(label, center, width, height);
-    }
-
     @Test
-    public void testConstructorAndGetters() {
+    void shouldCreateRectangleWithSpecifiedParameters() {
+        ILabel label = new BasicLabel("_RectangleLabel");
+        Point center = new Point(2.0, 3.0);
+        double width = 4.0;
+        double height = 5.0;
+
+        Rectangle rectangle = new Rectangle(label, center, width, height);
+
         assertEquals(label, rectangle.getLabel());
         assertEquals(center, rectangle.getCenter());
         assertEquals(width, rectangle.getWidth());
@@ -35,13 +27,26 @@ public class RectangleTest {
     }
 
     @Test
-    public void testContainsPoint() {
-        // Test con un punto interno
-        Point insidePoint = new Point(6, 6);
-        assertTrue(rectangle.containsPoint(insidePoint));
+    void shouldContainPointInsideRectangle() {
+        ILabel label = new BasicLabel("_RectangleLabel");
+        Point center = new Point(2.0, 3.0);
+        double width = 4.0;
+        double height = 5.0;
+        Rectangle rectangle = new Rectangle(label, center, width, height);
 
-        // Test con un punto esterno
-        Point outsidePoint = new Point(16, 16);
-        assertFalse(rectangle.containsPoint(outsidePoint));
+        assertTrue(rectangle.containsPoint(new Point(3.0, 4.0)));
     }
+
+    @Test
+    void shouldNotContainPointOutsideRectangle() {
+        ILabel label = new BasicLabel("_RectangleLabel");
+        Point center = new Point(2.0, 3.0);
+        double width = 4.0;
+        double height = 5.0;
+        Rectangle rectangle = new Rectangle(label, center, width, height);
+
+        assertFalse(rectangle.containsPoint(new Point(8.0, 8.0)));
+    }
+
+
 }

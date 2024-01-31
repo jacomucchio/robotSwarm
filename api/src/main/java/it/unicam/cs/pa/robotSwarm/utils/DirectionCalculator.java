@@ -1,4 +1,7 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.utils;
+
+import it.unicam.cs.pa.robotSwarm.model.Point;
+
 /**
  * Utility class for calculating final destination based on initial and target points.
  */

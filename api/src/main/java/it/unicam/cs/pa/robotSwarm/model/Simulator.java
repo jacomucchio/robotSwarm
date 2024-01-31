@@ -56,4 +56,6 @@ public class Simulator implements ISimulator{
         return robots;
     }
 
+    public IEnvironment getEnvironment(){return this.environment;}
+
 }

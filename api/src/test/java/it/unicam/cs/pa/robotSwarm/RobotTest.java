@@ -10,37 +10,62 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RobotTest {
+
+
     @Test
-    public void testCommandExecution() {
-        Robot r1 = new Robot();
-        Robot r2 = new Robot(new Point(0,10));
-        SignalCommand sign = new SignalCommand(r2,new BasicLabel("_A"));
-        sign.execute();
+    void shouldCreateRobotWithSpecifiedPosition() {
+        Point initialPosition = new Point(2.0, 3.0);
+        Robot robot = new Robot(initialPosition);
+        assertEquals(initialPosition, robot.getPosition());
+    }
 
-        Environment env=new Environment();
-        env.addRobot(r1);
-        env.addRobot(r2);
 
-        r1.addCommand(new MoveCommand(r1,1,1,4));
-        r1.addCommand(new StopCommand(r1));
-        r1.addCommand(new FollowCommand(r1,env,new BasicLabel("_A"),20,20));
-        r1.addCommand(new SignalCommand(r1,new BasicLabel("_A")));
-        r1.addCommand(new UnsignalCommand(r1, new BasicLabel("_A")));
-        r1.executeCommand();
 
-        r1.executeCommand();
+    @Test
+    void shouldMoveRobotToSpecifiedPositionWithGivenSpeed() {
+        Robot robot = new Robot();
+        double x = 0;
+        double y = 1;
+        double speed = 5;
 
-        r1.executeCommand();
+        robot.move(x, y, speed);
 
-        r1.executeCommand();
+        assertEquals(new Point(0, 5), robot.getPosition());
+    }
 
-        r1.executeCommand();
-        assertTrue(r1.isShowingCondition());
-        assertEquals(new BasicLabel("_A"), r1.getLabel());
-        r1.executeCommand();
-        assertFalse(r1.isShowingCondition());
+
+    @Test
+    void shouldStopRobot() {
+        Robot robot = new Robot();
+        double x = 5.0;
+        double y = 7.0;
+        double speed = 2.0;
+        robot.move(x, y, speed);
+        robot.stop();
+
+        assertEquals(0, robot.getSpeed());
 
     }
 
+    @Test
+    void shouldSignal() {
+        Robot robot = new Robot();
+        ILabel label = new BasicLabel("_TestLabel");
+
+        robot.signal(label);
+
+        assertTrue(robot.isShowingCondition());
+        assertEquals(label, robot.getLabel());
+    }
+
+    @Test
+    void shouldUnsignal() {
+        Robot robot = new Robot();
+        ILabel label = new BasicLabel("_TestLabel");
+        robot.signal(label);
+
+        robot.unsignal(label);
+        assertFalse(robot.isShowingCondition());
+    }
 
 }

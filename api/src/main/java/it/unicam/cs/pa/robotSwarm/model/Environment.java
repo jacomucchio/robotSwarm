@@ -82,6 +82,10 @@ public class Environment implements IEnvironment{
         return new ArrayList<>(robots);
     }
 
+    public List<IArea> getAreas() {
+        return new ArrayList<>(areas);
+    }
+
     /**
      * Gets a list of robots displaying a specific label.
      *
@@ -152,7 +156,6 @@ public class Environment implements IEnvironment{
 
         return new Point(averageX, averageY);
     }
-
     /**
      * Calculates the Euclidean distance between two points.
      *
