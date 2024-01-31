@@ -1,9 +1,9 @@
 package it.unicam.cs.pa.robotSwarm.model;
-import it.unicam.cs.pa.robotSwarm.io.ParserManager;
-import java.io.File;
-import java.nio.file.Paths;
+import it.unicam.cs.pa.robotSwarm.io.SimulationConfigurator;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Simulator implements ISimulator{
     private IEnvironment environment;
@@ -19,13 +19,13 @@ public class Simulator implements ISimulator{
 
     @Override
     public void simulate(double dt, double time) {
-        setupSimulation();
+        SimulationConfigurator sim = new SimulationConfigurator(environment);
+        sim.setupSimulation();
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
             for (IRobot robot : environment.getRobots()) {
                 robot.executeCommand();
                 System.out.println(robot);
             }
-            // eventualmente aggiorna l'ambiente
         }
     }
     /**
@@ -38,6 +38,7 @@ public class Simulator implements ISimulator{
     {
         return new Environment(generateRobots(robotNumber));
     }
+
     /**
      * Generates a list of robots with the specified number.
      *
@@ -53,19 +54,6 @@ public class Simulator implements ISimulator{
             System.out.println(robots.get(i));
         }
         return robots;
-    }
-    /**
-     * Sets up the simulation by parsing robot instructions and area configurations.
-     */
-    public void setupSimulation(){
-        //TODO sistemare in modo che il file venga letto da una cartella generica
-        File rbtInstructionFile=
-                Paths.get("src/main/java/it/unicam/cs/pa/robotSwarm/io/robotInstructions.txt").toFile();
-        File areaConfigurationFile=
-                Paths.get("src/main/java/it/unicam/cs/pa/robotSwarm/io/areasConfiguration.txt").toFile();
-
-        ParserManager parserManager = new ParserManager(rbtInstructionFile,areaConfigurationFile,environment);
-        parserManager.executeParsing();
     }
 
 }
