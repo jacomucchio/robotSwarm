@@ -1,6 +1,7 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.utils;
 
 import it.unicam.cs.followme.utilities.ShapeData;
+import it.unicam.cs.pa.robotSwarm.model.IArea;
 
 import java.util.HashMap;
 import java.util.Map;

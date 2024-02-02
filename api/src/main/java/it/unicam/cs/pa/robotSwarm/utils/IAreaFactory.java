@@ -1,6 +1,8 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.utils;
 
 import it.unicam.cs.followme.utilities.ShapeData;
+import it.unicam.cs.pa.robotSwarm.model.IArea;
+
 /**
  * Interface for a factory that creates {@code IArea} objects.
  * Implementations of this interface are responsible for converting

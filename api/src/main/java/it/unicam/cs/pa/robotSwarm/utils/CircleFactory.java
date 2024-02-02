@@ -1,10 +1,13 @@
-package it.unicam.cs.pa.robotSwarm.model;
+package it.unicam.cs.pa.robotSwarm.utils;
 
 import it.unicam.cs.followme.utilities.ShapeData;
+import it.unicam.cs.pa.robotSwarm.model.*;
+import it.unicam.cs.pa.robotSwarm.utils.IAreaFactory;
+
 /**
  * Implementation of the {@code IAreaFactory} interface for creating instances of {@code Circle}.
  */
-public class CircleFactory implements IAreaFactory{
+public class CircleFactory implements IAreaFactory {
 
     /**
      * Creates a circular area based on the provided {@code ShapeData}.

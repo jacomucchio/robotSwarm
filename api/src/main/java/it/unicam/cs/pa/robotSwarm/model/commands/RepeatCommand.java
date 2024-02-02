@@ -23,6 +23,8 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
      * @param commands  The list of commands to repeat.
      */
     public RepeatCommand(IRobot robot, int iterations, List<ICommand> commands) {
+        if(iterations<1) throw new IllegalArgumentException("iterations must be greater than 0");
+        if(commands.isEmpty()) throw new IllegalArgumentException("commands list can't be empty");
         this.robot = robot;
         this.iterations=iterations;
         this.commands=commands;
@@ -37,6 +39,8 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
      * @param commands   The list of commands to repeat.
      */
     public RepeatCommand(int iterations, List<ICommand> commands) {
+        if(iterations<1) throw new IllegalArgumentException("iterations must be greater than 0");
+        if(commands.isEmpty()) throw new IllegalArgumentException("commands list can't be empty");
         this.iterations=iterations;
         this.commands=commands;
         this.repetitions=iterations;
@@ -48,6 +52,7 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
      * @param iterations The number of iterations to repeat the commands.
      */
     public RepeatCommand(int iterations) {
+        if(iterations<1) throw new IllegalArgumentException("iterations must be greater than 0");
         this.iterations=iterations;
         this.commands=new ArrayList<>();
         this.repetitions=iterations;

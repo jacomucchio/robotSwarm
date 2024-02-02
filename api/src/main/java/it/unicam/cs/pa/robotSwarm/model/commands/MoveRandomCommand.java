@@ -24,7 +24,7 @@ public class MoveRandomCommand implements ICommand, Cloneable{
      * @param speed The speed at which the robot should move.
      */
     public MoveRandomCommand(IRobot robot,double x1, double x2,double y1, double y2, double speed) {
-        validateParameters(x1,x2,y1,y2);
+        validateParameters(x1,x2,y1,y2,speed);
         this.robot=robot;
         this.x1=x1;
         this.x2=x2;
@@ -42,7 +42,7 @@ public class MoveRandomCommand implements ICommand, Cloneable{
      * @param speed The speed at which the robot should move.
      */
     public MoveRandomCommand(double x1, double x2,double y1, double y2,double speed) {
-        validateParameters(x1,x2,y1,y2);
+        validateParameters(x1,x2,y1,y2,speed);
         this.x1=x1;
         this.x2=x2;
         this.y1=y1;
@@ -76,12 +76,14 @@ public class MoveRandomCommand implements ICommand, Cloneable{
      * @param x2 The upper bound of the x-coordinate range.
      * @param y1 The lower bound of the y-coordinate range.
      * @param y2 The upper bound of the y-coordinate range.
+     * @param speed The speed.
      * @throws IllegalArgumentException If the coordinates are out of the valid range.
      */
-    public void validateParameters(double x1, double x2, double y1,double y2 ){
+    private void validateParameters(double x1, double x2, double y1,double y2 ,double speed){
         if ((x1 < -1 || x1 > 1) || (x2 < -1 || x2 > 1)|| (y1 < -1 || y1 > 1)|| (y2 < -1 || y2 > 1)) {
             throw new IllegalArgumentException("x e y must be within tra -1 e 1");
         }
+        if(speed<0) throw new IllegalArgumentException("speed must be positive");
     }
     /**
      * Calculates a random position within the specified range.

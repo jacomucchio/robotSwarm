@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UntilTest {
     @Test
-    public void testUntilIfRobotIsAlreadyInArea() {
+    public void testShouldExecuteUntilLabel() {
         Robot r1 = new Robot();
         Circle c1= new Circle(new Point(0,0),10,new BasicLabel("_A"));
 
@@ -37,6 +37,30 @@ public class UntilTest {
         r1.executeCommand();
         r1.executeCommand();
         assertEquals(new BasicLabel("_A"), r1.getLabel());
+
+    }
+    @Test
+    public void testShouldNotStopExecutionUntilInsideArea() {
+        Robot r1 = new Robot();
+        Circle c1= new Circle(new Point(6,0),1,new BasicLabel("_A"));
+
+        Environment env= new Environment();
+        env.addArea(c1);
+        env.addRobot(r1);
+
+        MoveCommand cm1 = new MoveCommand(r1,1,0,1);
+
+        List<ICommand> cmdToRepeat = new ArrayList<>();
+        cmdToRepeat.add(cm1);
+
+        UntilCommand cm3 = new UntilCommand(r1,new BasicLabel("_A"),env,cmdToRepeat);
+
+        r1.addCommand(cm3);
+
+        for(int i=0;i<6;i++) {
+            r1.executeCommand();
+        }
+        assertEquals(new Point (5,0),r1.getPosition());
 
     }
 

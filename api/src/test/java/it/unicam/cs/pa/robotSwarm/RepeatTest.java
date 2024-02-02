@@ -2,64 +2,71 @@ package it.unicam.cs.pa.robotSwarm;
 
 import it.unicam.cs.pa.robotSwarm.model.BasicLabel;
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
+import it.unicam.cs.pa.robotSwarm.model.Point;
 import it.unicam.cs.pa.robotSwarm.model.Robot;
-import it.unicam.cs.pa.robotSwarm.model.commands.MoveCommand;
-import it.unicam.cs.pa.robotSwarm.model.commands.RepeatCommand;
-import it.unicam.cs.pa.robotSwarm.model.commands.SignalCommand;
-import it.unicam.cs.pa.robotSwarm.model.commands.StopCommand;
+import it.unicam.cs.pa.robotSwarm.model.commands.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RepeatTest {
     @Test
-    public void testRepeatOnRobot() {
-        Robot r1 = new Robot();
-        MoveCommand cm1 = new MoveCommand(r1,1,1,5);
-        StopCommand cm2 = new StopCommand(r1);
+    public void shouldExecuteCommandsRepeatedly() {
+        Robot robot = new Robot();
 
-        List<ICommand> cmdToRepeat = new ArrayList<>();
-        cmdToRepeat.add(cm1);
-        cmdToRepeat.add(cm2);
+        List<ICommand> commands = new ArrayList<>();
+        commands.add(new MoveCommand(robot, 1.0, 0.0, 1.0));
+        commands.add(new MoveCommand(robot, -1.0, 0.0, 1.0));
 
-        RepeatCommand cm3 = new RepeatCommand(r1, 2, cmdToRepeat);
-        SignalCommand cm4 = new SignalCommand(r1,new BasicLabel("_A"));
-        r1.addCommand(cm1);
-        r1.addCommand(cm2);
-        r1.addCommand(cm3);
-        r1.addCommand(cm4);
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
+        RepeatCommand repeatCommand = new RepeatCommand(robot, 2, commands);
+        robot.addCommand(repeatCommand);
+
+        for(int i=0; i<2; i++) {
+            robot.executeCommand();
+            assertEquals(new Point(1.0, 0), robot.getPosition());
+
+            robot.executeCommand();
+            assertEquals(new Point(0, 0), robot.getPosition());
+        }
+
     }
     @Test
-    public void testCloneRepeat() {
-        Robot r1 = new Robot();
-        MoveCommand cm1 = new MoveCommand(1,1,5);
-        StopCommand cm2 = new StopCommand();
-        List<ICommand> cmdToRepeat = new ArrayList<>();
-        cmdToRepeat.add(cm1);
-        cmdToRepeat.add(cm2);
+    public void shouldRepeatARepeat() {
+        Robot robot = new Robot();
 
-        RepeatCommand cm3 = new RepeatCommand( 2, cmdToRepeat);
+        List<ICommand> commandsForRepeat1 = new ArrayList<>();
+        commandsForRepeat1.add(new MoveCommand(1.0, 0.0, 1.0));
+        commandsForRepeat1.add(new MoveCommand(-1.0, 0.0, 1.0));
+        RepeatCommand repeat1 = new RepeatCommand( 2, commandsForRepeat1);
 
-        RepeatCommand cmcloned= cm3.clone();
-        cmcloned.setReceiver(r1);
-        r1.addCommand(cmcloned);
+        List<ICommand> commandsForRepeat2 = new ArrayList<>();
+        commandsForRepeat2.add(repeat1);
 
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
-        r1.executeCommand();
+        RepeatCommand repeat2 = new RepeatCommand(robot,2,commandsForRepeat2 );
+        robot.addCommand(repeat2);
+
+        for(int i=0; i<4; i++) {
+            robot.executeCommand();
+            System.out.println(robot.getPosition());
+            assertEquals(new Point(1.0, 0), robot.getPosition());
+
+            robot.executeCommand();
+            System.out.println(robot.getPosition());
+
+            assertEquals(new Point(0, 0), robot.getPosition());
+        }
+
     }
+    @Test
+    public void shouldThrowExceptionForInvalidParameters() {
+        Robot r = new Robot();
+        List<ICommand>cmd = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> new RepeatCommand(r, 2, cmd));
+        cmd.add(new MoveCommand(1,1,5));
+        assertThrows(IllegalArgumentException.class, () -> new RepeatCommand(r, 0, cmd));
+    }
+
 }

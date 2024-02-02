@@ -1,63 +1,61 @@
 package it.unicam.cs.pa.robotSwarm;
 
-import it.unicam.cs.pa.robotSwarm.model.Point;
+import it.unicam.cs.pa.robotSwarm.model.*;
 import it.unicam.cs.pa.robotSwarm.model.commands.MoveCommand;
-import it.unicam.cs.pa.robotSwarm.model.commands.MoveRandomCommand;
-import it.unicam.cs.pa.robotSwarm.model.Robot;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoveCommandTest {
     @Test
-    public void testMoveCommandValidParameters() {
-        Robot r = new Robot();
-        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(r,0,0,4));
-        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(r,2,0,4));
-        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(r,0,2,4));
-        assertDoesNotThrow(() -> new MoveCommand(r,0,1,4));
-    }
+    public void shouldMoveRobotToTheRight() {
+        IRobot robot = new Robot();
 
-    @Test
-    public void testExecutionIsDone(){
-        Robot r1 = new Robot();
-        MoveCommand moveCommand = new MoveCommand(r1,1,0,6);
+        MoveCommand moveCommand = new MoveCommand(robot, 1, 0, 5.0);
+
         moveCommand.execute();
         assertTrue(moveCommand.isExecuted());
+
+        assertEquals(new Point(5,0), robot.getPosition());
     }
     @Test
-    public void testMoveCmd(){
-        Robot r1 = new Robot(new Point(0,0));
-        Robot r2 = new Robot(new Point(10,10));
-        MoveCommand mc = new MoveCommand(1,0,5);
-        mc.setReceiver(r1);
+    public void shouldMoveRobotToTheLeft() {
+        IRobot robot = new Robot();
 
-        MoveCommand mc1 = new MoveCommand(1,0,5);
-        mc1.setReceiver(r2);
-        r1.addCommand(mc);
-        r1.addCommand(mc);
-        r2.addCommand(mc1);
-        r2.addCommand(mc1);
-        System.out.println("dovrei eseguire il comando su r1");
-        r1.executeCommand();
-        System.out.println("dovrei eseguire il comando su r2");
-        r2.executeCommand();
-        System.out.println("dovrei eseguire il comando su r1");
-        r1.executeCommand();
-        System.out.println("dovrei eseguire il comando su r2");
-        r2.executeCommand();
+        MoveCommand moveCommand = new MoveCommand(robot, -1, 0, 5.0);
+
+        moveCommand.execute();
+        assertTrue(moveCommand.isExecuted());
+
+        assertEquals(new Point(-5,0), robot.getPosition());
     }
-
     @Test
-    public void testClone(){
-        Robot r1 = new Robot(new Point(0,0));
-        MoveCommand mc = new MoveCommand(1,0,5);
-        MoveCommand mc2 = mc.clone();
-        mc2.setReceiver(r1);
-        r1.addCommand(mc2);
-        System.out.println("dovrei eseguire il comando su r1");
-        r1.executeCommand();
+    public void shouldMoveRobotUp() {
+        IRobot robot = new Robot();
 
+        MoveCommand moveCommand = new MoveCommand(robot, 0, 1, 5.0);
+
+        moveCommand.execute();
+        assertTrue(moveCommand.isExecuted());
+
+        assertEquals(new Point(0,5), robot.getPosition());
+    }
+    @Test
+    public void shouldMoveRobotDown() {
+        IRobot robot = new Robot();
+
+        MoveCommand moveCommand = new MoveCommand(robot, 0, -1, 5.0);
+
+        moveCommand.execute();
+        assertTrue(moveCommand.isExecuted());
+
+        assertEquals(new Point(0,-5), robot.getPosition());
+    }
+    @Test
+    public void shouldThrowExceptionForInvalidCoordinates() {
+        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(new Robot(), 1.5, 0.8, 2.0));
+        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(new Robot(), -0.5, 1.8, 2.0));
+        assertThrows(IllegalArgumentException.class, () -> new MoveCommand(new Robot(), 0.5, 0.8, -2.0));
     }
 
 }

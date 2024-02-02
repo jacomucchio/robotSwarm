@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SignalTest {
     @Test
-    public void testSignal() {
+    public void shouldSignal() {
         Robot r1 = new Robot();
         SignalCommand sc = new SignalCommand(r1,new BasicLabel("_A"));
         sc.execute();
@@ -20,14 +20,14 @@ public class SignalTest {
         assertFalse(r1.isShowingCondition());
     }
     @Test
-    public void testExecutionIsDone(){
+    public void shouldExecute(){
         Robot r1 = new Robot();
         SignalCommand sc = new SignalCommand(r1,new BasicLabel("_A"));
         sc.execute();
         assertTrue(sc.isExecuted());
     }
     @Test
-    public void testClone(){
+    public void shouldCloneTest(){
         Robot r1 = new Robot();
         SignalCommand sc = new SignalCommand(r1,new BasicLabel("_A"));
         SignalCommand scCloned = sc.clone();

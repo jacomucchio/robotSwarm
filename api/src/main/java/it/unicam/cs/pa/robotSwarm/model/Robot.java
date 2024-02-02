@@ -175,6 +175,12 @@ public class Robot implements IRobot{
     public double getSpeed() {
         return this.speed;
     }
+    public Point getTarget() {
+        return this.target;
+    }
+    public List<ICommand> getCommands() {
+        return this.program;
+    }
     /**
      * Checks if the robot is currently showing a condition.
      *

@@ -21,7 +21,7 @@ public class MoveCommand implements ICommand,Cloneable{
      * @param speed The speed at which the robot should move.
      */
     public MoveCommand(IRobot robot, double x, double y, double speed) {
-        validateParameters(x,y);
+        validateParameters(x,y,speed);
         this.robot = robot;
         this.x = x;
         this.y = y;
@@ -35,7 +35,7 @@ public class MoveCommand implements ICommand,Cloneable{
      * @param speed The speed at which the robot should move.
      */
     public MoveCommand(double x, double y, double speed) {
-        validateParameters(x,y);
+        validateParameters(x,y,speed);
         this.x = x;
         this.y = y;
         this.speed = speed;
@@ -45,9 +45,11 @@ public class MoveCommand implements ICommand,Cloneable{
      *
      * @param x The x-coordinate.
      * @param y The y-coordinate.
-     * @throws IllegalArgumentException If the coordinates are out of the valid range.
+     * @param speed The speed.
+     * @throws IllegalArgumentException If the coordinates or speed are out of the valid range.
      */
-    private void validateParameters(double x, double y){
+    private void validateParameters(double x, double y,double speed){
+        if(speed<0) throw new IllegalArgumentException("speed must be positive");
         if ((x < -1 || x > 1) || (y < -1 || y > 1)) {
             throw new IllegalArgumentException("x and y must be between -1 and 1");
         }

@@ -4,7 +4,7 @@ import it.unicam.cs.followme.utilities.FollowMeParser;
 import it.unicam.cs.followme.utilities.ShapeData;
 import it.unicam.cs.pa.robotSwarm.model.IArea;
 import it.unicam.cs.pa.robotSwarm.model.IEnvironment;
-import it.unicam.cs.pa.robotSwarm.model.ShapeDataAreaFactory;
+import it.unicam.cs.pa.robotSwarm.utils.ShapeDataAreaFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
