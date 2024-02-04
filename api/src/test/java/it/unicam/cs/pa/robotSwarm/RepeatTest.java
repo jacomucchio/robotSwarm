@@ -1,6 +1,4 @@
 package it.unicam.cs.pa.robotSwarm;
-
-import it.unicam.cs.pa.robotSwarm.model.BasicLabel;
 import it.unicam.cs.pa.robotSwarm.model.ICommand;
 import it.unicam.cs.pa.robotSwarm.model.Point;
 import it.unicam.cs.pa.robotSwarm.model.Robot;

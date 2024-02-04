@@ -24,8 +24,8 @@ public class FollowCommandTest {
 
     @Test
     public void shouldMoveRobotTowardsTarget() {
-        IRobot robot1 = new Robot(new Point(0,0));
-        IRobot robot2 = new Robot(new Point(4,0));
+        IRobot robot1 = new Robot(new Point(0,0),1);
+        IRobot robot2 = new Robot(new Point(4,0),1);
         ILabel label = new BasicLabel("_A");
 
         SignalCommand sc = new SignalCommand(label);

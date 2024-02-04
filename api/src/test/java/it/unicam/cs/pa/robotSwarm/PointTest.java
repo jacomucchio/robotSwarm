@@ -2,7 +2,6 @@ package it.unicam.cs.pa.robotSwarm;
 
 import org.junit.jupiter.api.Test;
 import it.unicam.cs.pa.robotSwarm.model.Point;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PointTest {
@@ -20,28 +19,22 @@ public class PointTest {
 
     @Test
     void shouldCalculateDistanceBetweenTwoPoints() {
-        // Arrange
         Point point1 = new Point(1.0, 1.0);
         Point point2 = new Point(4.0, 5.0);
 
-        // Act
         double distance = point1.distance(point2);
 
-        // Assert
         assertEquals(5.0, distance);
     }
 
     @Test
     void shouldCreateNewPointByAddingValues() {
-        // Arrange
         Point point = new Point(2.0, 3.0);
         double dx = 1.0;
         double dy = -2.0;
 
-        // Act
         Point newPoint = point.add(dx, dy);
 
-        // Assert
         assertEquals(3.0, newPoint.getX());
         assertEquals(1.0, newPoint.getY());
     }

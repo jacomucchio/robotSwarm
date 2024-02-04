@@ -6,9 +6,9 @@ import it.unicam.cs.pa.robotSwarm.model.Point;
  * Utility class for calculating final destination based on initial and target points.
  */
 public class DirectionCalculator {
-    private Point initialPoint;
-    private Point targetPoint;
-    private double speed;
+    private final Point initialPoint;
+    private final Point targetPoint;
+    private final double speed;
     public DirectionCalculator(Point initialPoint, Point targetPoint, double speed) {
         if (initialPoint == null || targetPoint == null) {
             throw new IllegalArgumentException("Initial point and target point cannot be null.");

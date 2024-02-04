@@ -1,6 +1,4 @@
 package it.unicam.cs.pa.robotSwarm.io;
-
-import it.unicam.cs.pa.robotSwarm.io.ParserManager;
 import it.unicam.cs.pa.robotSwarm.model.IEnvironment;
 
 import java.io.File;

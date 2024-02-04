@@ -57,9 +57,9 @@ public class Rectangle implements IArea{
     }
     @Override
     public String toString() {
-        return "[Rettangolo con label : "+getLabel()+
-                "\n alla posizione: "+getCenter()+
-                "\n con altezza: "+getHeight()+
-                "\n con larghezza "+getWidth();
+        return "[Rectangle with label: " + getLabel() +
+                "\n at position: " + getCenter() +
+                "\n with height: " + getHeight() +
+                "\n with width: " + getWidth();
     }
 }

@@ -17,9 +17,7 @@ public class LabelTest {
 
     @Test
     void shouldThrowExceptionForNullID() {
-        String nullId = null;
-
-        assertThrows(IllegalArgumentException.class, () -> new BasicLabel(nullId));
+        assertThrows(IllegalArgumentException.class, () -> new BasicLabel(null));
     }
 
     @Test

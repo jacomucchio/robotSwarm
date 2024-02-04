@@ -44,18 +44,16 @@ public class DirectionTest {
 
     @Test
     void shouldThrowExceptionForNullInitialPoint() {
-        Point nullInitialPoint = null;
         Point targetPoint = new Point(4.0, 6.0);
         double speed = 2.0;
 
-        assertThrows(IllegalArgumentException.class, () -> new DirectionCalculator(nullInitialPoint, targetPoint, speed));
+        assertThrows(IllegalArgumentException.class, () -> new DirectionCalculator(null, targetPoint, speed));
     }
 
     @Test
     void shouldThrowExceptionForNullTargetPoint() {
         Point initialPoint = new Point(2.0, 3.0);
-        Point nullTargetPoint = null;
         double speed = 2.0;
-        assertThrows(IllegalArgumentException.class, () -> new DirectionCalculator(initialPoint, nullTargetPoint, speed));
+        assertThrows(IllegalArgumentException.class, () -> new DirectionCalculator(initialPoint, null, speed));
     }
 }

@@ -7,18 +7,20 @@ import java.util.List;
 
 public class Simulator implements ISimulator{
     private IEnvironment environment;
-
+    private final int robotNumber;
     /**
      * Constructs a simulator with the specified number of robots.
      *
      * @param robotNumber The number of robots in the simulation.
      */
     public Simulator(int robotNumber) {
-        this.environment = generateEnvironment(robotNumber);
+        this.robotNumber=robotNumber;
     }
 
     @Override
     public void simulate(double dt, double time) {
+        this.environment = generateEnvironment(robotNumber, dt);
+
         SimulationConfigurator sim = new SimulationConfigurator(environment);
         sim.setupSimulation();
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
@@ -34,9 +36,9 @@ public class Simulator implements ISimulator{
      * @param robotNumber The number of robots to generate.
      * @return The generated environment.
      */
-    public Environment generateEnvironment(int robotNumber)
+    public Environment generateEnvironment(int robotNumber,double dt)
     {
-        return new Environment(generateRobots(robotNumber));
+        return new Environment(generateRobots(robotNumber,dt));
     }
 
     /**
@@ -45,12 +47,12 @@ public class Simulator implements ISimulator{
      * @param robotNumber The number of robots to generate.
      * @return The list of generated robots.
      */
-    public List<IRobot> generateRobots(int robotNumber)
+    public List<IRobot> generateRobots(int robotNumber,double dt)
     {
         List<IRobot> robots=new ArrayList<>();
         for(int i=0;i<robotNumber;i++)
         {
-            robots.add(new Robot(-100,100,-100,100));
+            robots.add(new Robot(-100,100,-100,100,dt));
             System.out.println(robots.get(i));
         }
         return robots;

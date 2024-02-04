@@ -4,7 +4,6 @@ import it.unicam.cs.pa.robotSwarm.model.*;
 import it.unicam.cs.pa.robotSwarm.model.commands.SignalCommand;
 import it.unicam.cs.pa.robotSwarm.model.commands.UnsignalCommand;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SignalTest {

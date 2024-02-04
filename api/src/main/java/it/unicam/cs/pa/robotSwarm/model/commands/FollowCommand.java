@@ -11,6 +11,16 @@ public class FollowCommand implements ICommand, Cloneable{
     Point target;
     ILabel label;
     private boolean isExecuted=false;
+
+    /**
+     * Constructs a FollowCommand associated with a robot, environment, label, distance, and speed.
+     *
+     * @param r         The robot involved in the command.
+     * @param e         The environment in which the robot operates.
+     * @param label     The label used to check the condition.
+     * @param dist      The distance within which to find robots with the specified label.
+     * @param speed     The speed at which the robot should move.
+     */
     public FollowCommand(IRobot r, IEnvironment e, ILabel label, double dist, double speed) {
         this.robot=r;
         this.environment=e;
@@ -18,19 +28,23 @@ public class FollowCommand implements ICommand, Cloneable{
         this.speed=speed;
         this.label=label;
     }
+    /**
+     * Constructs a FollowCommand associated with an environment, label, distance, and speed.
+     *
+     * @param e         The environment in which the robot operates.
+     * @param label     The label used to check the condition.
+     * @param dist      The distance within which to find robots with the specified label.
+     * @param speed     The speed at which the robot should move.
+     */
     public FollowCommand(IEnvironment e, ILabel label, double dist, double speed) {
         this.environment=e;
         this.distance=dist;
         this.speed=speed;
         this.label=label;
     }
-
-    public FollowCommand(ILabel label, double dist, double speed) {
-        this.distance=dist;
-        this.speed=speed;
-        this.label=label;
-    }
-
+    /**
+     * Executes the FollowCommand, making the robot follow a target with a specified label.
+     */
     @Override
     public void execute() {
         target=environment.getAveragePositionOfRobotsWithLabel(robot.getPosition(),label,distance);

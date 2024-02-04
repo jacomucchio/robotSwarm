@@ -1,7 +1,6 @@
 package it.unicam.cs.pa.robotSwarm;
 
 import it.unicam.cs.pa.robotSwarm.model.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -89,8 +88,8 @@ public class EnvironmentTest {
         // Arrange
         Environment environment = new Environment();
         ILabel label = new BasicLabel("_RobotLabel");
-        IRobot robot1 = new Robot(new Point(1, 1));
-        IRobot robot2 = new Robot(new Point(3, 3));
+        IRobot robot1 = new Robot(new Point(1, 1),1);
+        IRobot robot2 = new Robot(new Point(3, 3),1);
         robot2.signal(label);
         environment.addRobot(robot1);
         environment.addRobot(robot2);

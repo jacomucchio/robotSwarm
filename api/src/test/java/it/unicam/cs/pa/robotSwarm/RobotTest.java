@@ -1,12 +1,6 @@
 package it.unicam.cs.pa.robotSwarm;
-
 import it.unicam.cs.pa.robotSwarm.model.*;
-import it.unicam.cs.pa.robotSwarm.model.commands.*;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RobotTest {
@@ -15,7 +9,7 @@ public class RobotTest {
     @Test
     void shouldCreateRobotWithSpecifiedPosition() {
         Point initialPosition = new Point(2.0, 3.0);
-        Robot robot = new Robot(initialPosition);
+        Robot robot = new Robot(initialPosition,1);
         assertEquals(initialPosition, robot.getPosition());
     }
 

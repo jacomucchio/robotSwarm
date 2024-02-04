@@ -3,7 +3,6 @@ package it.unicam.cs.pa.robotSwarm;
 import it.unicam.cs.pa.robotSwarm.model.*;
 import it.unicam.cs.pa.robotSwarm.model.commands.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,5 +62,7 @@ public class UntilTest {
         assertEquals(new Point (5,0),r1.getPosition());
 
     }
+
+
 
 }

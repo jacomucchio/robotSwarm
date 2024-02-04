@@ -16,7 +16,7 @@ public class Robot implements IRobot{
     private boolean isShowingCondition;
     private int instructionCounter;
     private List<ICommand> program;
-    private double timeForExecution=1;
+    private double timeForExecution;
 
     /**
      * Default constructor for creating a Robot at position (0,0).
@@ -28,7 +28,7 @@ public class Robot implements IRobot{
         isShowingCondition=false;
         this.program = new ArrayList<>();
         this.instructionCounter=0;
-
+        this.timeForExecution=1;
     }
 
     /**
@@ -36,13 +36,14 @@ public class Robot implements IRobot{
      *
      * @param position The initial position of the Robot.
      */
-    public Robot(Point position) {
+    public Robot(Point position, double timeForExecution) {
         this.position = position;
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
         this.program = new ArrayList<>();
         this.instructionCounter=0;
+        this.timeForExecution=timeForExecution;
     }
 
     /**
@@ -51,13 +52,14 @@ public class Robot implements IRobot{
      * @param position The initial position of the Robot.
      * @param program  The list of commands in the Robot's program.
      */
-    public Robot(Point position, List<ICommand>program) {
+    public Robot(Point position, List<ICommand>program, double timeForExecution) {
         this.position = position;
         this.target= new Point(0,0);
         this.speed=0;
         isShowingCondition=false;
         this.program=program;
         this.instructionCounter=0;
+        this.timeForExecution=timeForExecution;
     }
     /**
      * Constructor for creating a Robot with a random position within a specified range.
@@ -67,7 +69,7 @@ public class Robot implements IRobot{
      * @param y1 The minimum y-coordinate for the random position range.
      * @param y2 The maximum y-coordinate for the random position range.
      */
-    public Robot(double x1, double x2,double y1, double y2) {
+    public Robot(double x1, double x2,double y1, double y2, double timeForExecution) {
         double randomX = x1 + Math.random() * (x2 - x1);
         double randomY = y1 + Math.random() * (y2 - y1);
         this.position = new Point(randomX, randomY);
@@ -75,6 +77,7 @@ public class Robot implements IRobot{
         this.speed = 0;
         isShowingCondition = false;
         this.program = new ArrayList<>();
+        this.timeForExecution=timeForExecution;
     }
     /**
      * The executeCommand method executes the current command in the robot's program.

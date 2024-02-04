@@ -6,10 +6,10 @@ import java.util.Objects;
  */
 public class Point {
     /** The x-coordinate of the point. */
-    private double x;
+    private final double x;
 
     /** The y-coordinate of the point. */
-    private double y;
+    private final double y;
 
     /**
      * Constructs a new Point with the specified x and y coordinates.
@@ -30,13 +30,6 @@ public class Point {
         return y;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
     /**
      * Calculates the Euclidean distance between this point and another point.
      *
@@ -46,6 +39,7 @@ public class Point {
     public double distance(Point other) {
         return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
     }
+
     /**
      * Creates a new point by adding specified values to the x and y coordinates of this point.
      *

@@ -93,11 +93,11 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
      *
      * @return isExecuted=true if the robot is inside the area, false otherwise.
      */
-    public boolean checkRobotInsideArea() {
+    private boolean checkRobotInsideArea() {
         if(!environment.getAreasAtPointWithLabel(robot.getPosition(), label).isEmpty()){
             isExecuted=true;
-            return isExecuted;
-        } else return isExecuted;
+        }
+        return isExecuted;
     }
 
     @Override

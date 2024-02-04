@@ -4,7 +4,6 @@ import it.unicam.cs.pa.robotSwarm.model.BasicLabel;
 import it.unicam.cs.pa.robotSwarm.model.Circle;
 import it.unicam.cs.pa.robotSwarm.model.ILabel;
 import it.unicam.cs.pa.robotSwarm.model.Point;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
