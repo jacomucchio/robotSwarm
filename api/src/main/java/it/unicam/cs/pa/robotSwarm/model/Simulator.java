@@ -19,14 +19,15 @@ public class Simulator implements ISimulator{
 
     @Override
     public void simulate(double dt, double time) {
+        if(dt>time) throw new IllegalArgumentException("time must be greater than dt");
+        if(dt<0) throw new IllegalArgumentException("time can't be a negative value");
         this.environment = generateEnvironment(robotNumber, dt);
-
         SimulationConfigurator sim = new SimulationConfigurator(environment);
         sim.setupSimulation();
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
             for (IRobot robot : environment.getRobots()) {
                 robot.executeCommand();
-                System.out.println(robot);
+                System.out.println(robot+"\n");
             }
         }
     }
@@ -59,5 +60,6 @@ public class Simulator implements ISimulator{
     }
 
     public IEnvironment getEnvironment(){return this.environment;}
+
 
 }

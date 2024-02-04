@@ -15,8 +15,8 @@ public class DoForeverTest {
     @Test
     void shouldExecuteCommandsInLoopForever() {
         IRobot robot = new Robot();
-        ICommand command1 = new ContinueCommand(1);  // Command that needs to be executed multiple times
-        ICommand command2 = new ContinueCommand(1);  // Command that should be executed only once
+        ICommand command1 = new ContinueCommand(1);
+        ICommand command2 = new ContinueCommand(1);
         List<ICommand> commands = List.of(command1, command2);
 
         DoForeverCommand doForeverCommand = new DoForeverCommand(robot, commands);
@@ -32,8 +32,8 @@ public class DoForeverTest {
     @Test
     void shouldResetIterationStatus() {
         IRobot robot = new Robot();
-        ICommand command1 = new MoveCommand(1,0,1);  // Command that needs to be executed multiple times
-        ICommand command2 = new StopCommand();  // Command that should be executed only once
+        ICommand command1 = new MoveCommand(1,0,1);
+        ICommand command2 = new StopCommand();
         List<ICommand> commands = List.of(command1, command2);
 
         DoForeverCommand doForeverCommand = new DoForeverCommand(robot, commands);
