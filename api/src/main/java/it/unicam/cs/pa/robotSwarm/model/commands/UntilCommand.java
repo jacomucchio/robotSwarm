@@ -126,10 +126,8 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
     @Override
     public String toString() {
         return "UntilCommand [" +
-                "Robot: " + robot +
                 ", Label: " + label +
                 ", Executed: " + isExecuted +
-                ", Iteration Counter: " + icounter +
                 "]";
     }
 }

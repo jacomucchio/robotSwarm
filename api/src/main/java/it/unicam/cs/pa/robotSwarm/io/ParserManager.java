@@ -13,9 +13,9 @@ import java.util.List;
  * Manages the parsing of robot programs and areas, assigning commands to robots in the given environment.
  */
 public class ParserManager {
-    // Path of the file containing the robot program.
+    /**Path of the file containing the robot program. */
     private File programPath;
-    // Path of the file containing the areas.
+    /** Path of the file containing the areas. */
     private File areasPath;
     private IEnvironment environment;
 

@@ -48,11 +48,9 @@ public class RepeatTest {
 
         for(int i=0; i<4; i++) {
             robot.executeCommand();
-            System.out.println(robot.getPosition());
             assertEquals(new Point(1.0, 0), robot.getPosition());
 
             robot.executeCommand();
-            System.out.println(robot.getPosition());
 
             assertEquals(new Point(0, 0), robot.getPosition());
         }

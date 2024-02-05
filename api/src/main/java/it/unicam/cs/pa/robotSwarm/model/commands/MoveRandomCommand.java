@@ -106,10 +106,6 @@ public class MoveRandomCommand implements ICommand, Cloneable{
     @Override
     public String toString() {
         return "MoveRandomCommand ["
-                + ", X1: " + x1
-                + ", X2: " + x2
-                + ", Y1: " + y1
-                + ", Y2: " + y2
                 + ", Random Position: " + randomPosition
                 + ", Speed: " + speed
                 + ", Executed: " + isExecuted

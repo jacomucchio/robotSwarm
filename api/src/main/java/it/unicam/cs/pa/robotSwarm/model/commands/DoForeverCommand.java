@@ -90,8 +90,7 @@ public class DoForeverCommand implements IIterativeCommands, Cloneable {
     @Override
     public String toString() {
         return "DoForeverCommand ["
-                + ", Commands: " + commands
-                + ", Iteration Counter: " + icounter
+                + ", Commands to execute: " + commands.get(icounter)
                 + ", Executed: " + isExecuted
                 + "]";
     }

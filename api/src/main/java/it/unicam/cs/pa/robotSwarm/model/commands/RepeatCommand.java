@@ -143,10 +143,7 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
     @Override
     public String toString() {
         return "RepeatCommand [" +
-                ", Iterations: " + iterations +
-                ", Iteration Counter: " + instructionCounter +
-                ", Repetitions: " + repetitions +
-                ", Commands: " + commands +
+                ", Executing "+ commands.get(instructionCounter)+
                 ", Executed: " + isExecuted +
                 "]";
     }
