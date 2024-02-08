@@ -17,9 +17,3 @@ application {
     mainClass = 'it.unicam.cs.followme.app.App'
 }
 
-run {
-    standardInput = System.in
-}
-
-
-

@@ -168,4 +168,5 @@ public class Environment implements IEnvironment{
         double dy = p1.getY() - p2.getY();
         return Math.sqrt(dx * dx + dy * dy);
     }
+    
 }
