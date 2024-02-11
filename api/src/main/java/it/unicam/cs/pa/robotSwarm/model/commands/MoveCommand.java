@@ -94,11 +94,10 @@ public class MoveCommand implements ICommand,Cloneable{
     }
     @Override
     public String toString() {
-        return "MoveCommand ["
-                + ", X: " + x
+        return "Move ["
+                + "X: " + x
                 + ", Y: " + y
                 + ", Speed: " + speed
-                + ", Executed: " + isExecuted
                 + "]";
     }
 }

@@ -85,7 +85,6 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
             else isExecuted=true;
         } else instructionCounter++;
     }
-
     @Override
     public boolean isExecuted() {
         return isExecuted;
@@ -142,9 +141,8 @@ public class RepeatCommand implements IIterativeCommands,Cloneable {
 
     @Override
     public String toString() {
-        return "RepeatCommand [" +
-                ", Executing "+ commands.get(instructionCounter)+
-                ", Executed: " + isExecuted +
+        return "Repeat " +
+                "-> "+ commands.get(instructionCounter)+
                 "]";
     }
 }

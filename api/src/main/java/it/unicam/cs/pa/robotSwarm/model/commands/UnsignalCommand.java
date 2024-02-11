@@ -72,9 +72,8 @@ public class UnsignalCommand implements ICommand,Cloneable {
     }
     @Override
     public String toString() {
-        return  "UnsignalCommand [" +
+        return  "Unsignal [" +
                 ", Label: " + label +
-                ", Executed: " + isExecuted +
                 "]";
     }
 }

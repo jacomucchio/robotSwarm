@@ -56,9 +56,8 @@ public class ContinueCommand implements ICommand,Cloneable {
 
     @Override
     public String toString() {
-        return "ContinueCommand ["
-                + ", Seconds: " + seconds
-                + ", Executed: " + isExecuted
+        return "Continue ["
+                + " Seconds: " + seconds
                 + "]";
     }
     /**

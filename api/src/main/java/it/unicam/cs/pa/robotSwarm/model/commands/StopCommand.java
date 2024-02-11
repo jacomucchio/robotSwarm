@@ -63,7 +63,7 @@ public class StopCommand implements ICommand, Cloneable {
     }
     @Override
     public String toString() {
-        return "StopCommand [" +
+        return "Stop [" +
                 ", Executed: " + isExecuted +
                 "]";
     }

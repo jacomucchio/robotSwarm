@@ -25,12 +25,12 @@ public class Simulator implements ISimulator{
         SimulationConfigurator sim = new SimulationConfigurator(environment);
         sim.setupSimulation();
         for (double currentTime = 0; currentTime <= time; currentTime += dt) {
-            System.out.println("Starting Execution\n");
+            System.out.println("\u001B[32mStarting execution\u001B[0m"+"\n");
             for (IRobot robot : environment.getRobots()) {
                 robot.executeCommand();
                 System.out.println(robot+"\n");
             }
-            System.out.println("Done Execution\n");
+            System.out.println("\u001B[31mEnd of execution\u001B[0m"+"\n");
         }
     }
     /**
@@ -56,7 +56,6 @@ public class Simulator implements ISimulator{
         for(int i=0;i<robotNumber;i++)
         {
             robots.add(new Robot(-100,100,-100,100,dt));
-            System.out.println(robots.get(i));
         }
         return robots;
     }

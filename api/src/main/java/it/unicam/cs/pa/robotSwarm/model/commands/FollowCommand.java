@@ -74,12 +74,11 @@ public class FollowCommand implements ICommand, Cloneable{
     }
     @Override
     public String toString() {
-        return "FollowCommand ["
+        return "Follow ["
                 + ", Distance: " + distance
                 + ", Speed: " + speed
                 + ", Target: " + target
                 + ", Label: " + label
-                + ", Executed: " + isExecuted
                 + "]";
     }
 }
