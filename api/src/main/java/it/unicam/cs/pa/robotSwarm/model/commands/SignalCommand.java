@@ -71,7 +71,7 @@ public class SignalCommand implements ICommand,Cloneable {
     @Override
     public String toString() {
         return "Signal [" +
-                ", Label: " + label +
+                "Label: " + label +
                 "]";
     }
 

@@ -126,7 +126,8 @@ public class UntilCommand implements IIterativeCommands,Cloneable {
     @Override
     public String toString() {
         return "Until [" +
-                ", Label: " + label +
+                "Label: " + label +
+                "->"+commands.get(icounter)+
                 "]";
     }
 }

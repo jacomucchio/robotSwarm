@@ -202,7 +202,7 @@ public class Robot implements IRobot{
         builder.append(", Label: ").append(label);
         builder.append(", Target: ").append(target);
         builder.append(", Speed: ").append(speed);
-        builder.append(", Showing Condition: ").append(isShowingCondition);
+        builder.append(", Showing Label: ").append(isShowingCondition);
         builder.append("]");
 
         if (instructionCounter < program.size()) {
